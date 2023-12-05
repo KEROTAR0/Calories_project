@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources><string-array name="drawer_menu_items">
+    <item>Chỉnh sửa thông tin</item>
+    <item>Cài đặt</item>
+    <item>Thông tin thức ăn</item>
+    <item>Nhật ký</item>
+    <item>Bữa ăn</item>
+    <item>Mục tiêu</item>
+    <item>Thông tin ứng dụng</item>
+</string-array></resources>

@@ -1,0 +1,30 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_item_1"
+        android:title="Chỉnh sửa thông tin"
+        android:orderInCategory="100" />
+    <item
+        android:id="@+id/menu_item_2"
+        android:title="Cài đặt"
+        android:orderInCategory="100" />
+    <item
+        android:id="@+id/menu_item_3"
+        android:title="Thông tin thức ăn"
+        android:orderInCategory="100" />
+    <item
+        android:id="@+id/menu_item_4"
+        android:title="Nhật ký"
+        android:orderInCategory="100" />
+    <item
+        android:id="@+id/menu_item_5"
+        android:title="Bữa ăn"
+        android:orderInCategory="100" />
+    <item
+        android:id="@+id/menu_item_6"
+        android:title="Mục tiêu"
+        android:orderInCategory="100" />
+    <item
+        android:id="@+id/menu_item_7"
+        android:title="Thông tin ứng dụng"
+        android:orderInCategory="100" />
+</menu>

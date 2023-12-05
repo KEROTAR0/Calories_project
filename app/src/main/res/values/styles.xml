@@ -1,0 +1,9 @@
+<resources>
+    <!-- Các style đã tồn tại -->
+
+    <!-- Định nghĩa một style mới -->
+    <style name="DialogButtonStyle" parent="Widget.AppCompat.Button">
+        <item name="android:background">@drawable/border</item>
+        <!-- Các thuộc tính khác -->
+    </style>
+</resources>
