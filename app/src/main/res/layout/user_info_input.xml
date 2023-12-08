@@ -25,12 +25,12 @@
         android:layout_height="wrap_content"
         android:hint="Tuổi của bạn"
         android:inputType="number"/>
-    <EditText
-        android:id="@+id/genderInput"
+    <Spinner
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Giới tính [Nam/Nữ]"/>
-
+        android:id="@+id/spn_gender"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"/>
     <EditText
         android:id="@+id/heightInput"
         android:layout_width="match_parent"

@@ -52,17 +52,17 @@
             <Button
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
-                android:background="@drawable/pos_button_layout"
-                android:text="+"
-                android:textSize="20dp"
-                android:id="@+id/increase"/>
-            <Button
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"
                 android:background="@drawable/neg_button_layout"
                 android:text="-"
                 android:textSize="20dp"
                 android:id="@+id/decrease"/>
+            <Button
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/pos_button_layout"
+                android:text="+"
+                android:textSize="20dp"
+                android:id="@+id/increase"/>
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

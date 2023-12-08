@@ -27,52 +27,6 @@ public class MainActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction().replace(R.id.ln_main, new MainScreen(), null).commit();
 
     }
-    public void showInputDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        LayoutInflater inflater = this.getLayoutInflater();
-        View dialogView = inflater.inflate(R.layout.user_info_input, null);
-        builder.setView(dialogView);
 
-        EditText editTextName = dialogView.findViewById(R.id.nameInput);
-        EditText editTextAge = dialogView.findViewById(R.id.ageInput);
-        EditText editTextGender = dialogView.findViewById(R.id.genderInput);
-        EditText editHeightGender = dialogView.findViewById(R.id.heightInput);
-        EditText editWeightGender = dialogView.findViewById(R.id.weightInput);
-
-
-        builder.setPositiveButton("Xác nhận", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-
-                String name = editTextName.getText().toString();
-                String age = editTextAge.getText().toString();
-                String gender = editTextGender.getText().toString();
-                String height = editHeightGender.getText().toString();
-                String weight = editWeightGender.getText().toString();
-
-                ThongTinCaNhan_ACT thongTinCaNhan = (ThongTinCaNhan_ACT) getSupportFragmentManager().findFragmentByTag("thong_tin_ca_nhan");
-                if (thongTinCaNhan != null) {
-                    thongTinCaNhan.updateUserInfo(name, age, gender, height, weight);
-                }
-
-                SlideMenu menuUserName = (SlideMenu) getSupportFragmentManager().findFragmentByTag("slide_menu_layout");
-                if (menuUserName != null) {
-                    menuUserName.changeMenuUserName(name);
-                }
-
-                dialog.dismiss();
-            }
-        });
-
-        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-            }
-        });
-
-        builder.create().show();
-
-    }
 
 }

@@ -3,14 +3,22 @@ package vn.edu.dlu.ctk45.calories_app;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
 
 public class ThongTinCaNhan_ACT extends Fragment {
 
@@ -46,10 +54,52 @@ public class ThongTinCaNhan_ACT extends Fragment {
                 getActivity().onBackPressed();
             }
         });
+
         return rootView;
     }
-    private void showInputDialog() {
-        ((MainActivity) getActivity()).showInputDialog();
+
+
+    public void showInputDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
+        LayoutInflater inflater = requireActivity().getLayoutInflater();
+        View dialogView = inflater.inflate(R.layout.user_info_input, null);
+        builder.setView(dialogView);
+
+        EditText editTextName = dialogView.findViewById(R.id.nameInput);
+        EditText editTextAge = dialogView.findViewById(R.id.ageInput);
+        EditText editHeightGender = dialogView.findViewById(R.id.heightInput);
+        EditText editWeightGender = dialogView.findViewById(R.id.weightInput);
+
+        Spinner spinnerGender = dialogView.findViewById(R.id.spn_gender);
+        String[] goals = {"Nam", "Nữ", "Giới tính khác"};
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_spinner_item, goals);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerGender.setAdapter(adapter);
+        builder.setPositiveButton("Xác nhận", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                String name = editTextName.getText().toString();
+                String age = editTextAge.getText().toString();
+                String gender = spinnerGender.getSelectedItem().toString();
+                String height = editHeightGender.getText().toString();
+                String weight = editWeightGender.getText().toString();
+
+                updateUserInfo(name, age, gender, height, weight);
+
+                dialog.dismiss();
+            }
+        });
+
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+
+        builder.create().show();
+
     }
     public void updateUserInfo(String name, String age, String gender, String height, String weight) {
 
@@ -72,7 +122,6 @@ public class ThongTinCaNhan_ACT extends Fragment {
                 textViewWeight.setText(weight);
             }
         }
-
     }
     public void delUserInfo()
     {
@@ -87,7 +136,9 @@ public class ThongTinCaNhan_ACT extends Fragment {
         textViewName.setText(R.string.user_name);
         textViewAge.setText(R.string.user_age);
         textViewGender.setText(R.string.user_gender);
-        textViewHeight.setText(R.string.user_heigh);
+        textViewHeight.setText(R.string.user_height);
         textViewWeight.setText(R.string.user_weight);
+
+
     }
 }

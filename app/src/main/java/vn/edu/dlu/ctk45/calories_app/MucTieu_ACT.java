@@ -23,7 +23,7 @@ public class MucTieu_ACT extends Fragment {
         }
 
         Spinner spinnerGoal = rootView.findViewById(R.id.spn_goal);
-        String[] goals = {"Tăng cân", "Giảm cân"};
+        String[] goals = {"Tăng cân", "Giảm cân", "Cân bằng"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_spinner_item, goals);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerGoal.setAdapter(adapter);

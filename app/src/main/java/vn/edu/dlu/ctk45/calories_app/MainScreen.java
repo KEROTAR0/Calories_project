@@ -1,7 +1,9 @@
 package vn.edu.dlu.ctk45.calories_app;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -76,6 +78,19 @@ public class MainScreen extends Fragment{
                 transaction.commit();
             }
         });
+
+        rootView.findViewById(R.id.add_activity).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.replace(R.id.ln_main, new HoatDong());
+                transaction.addToBackStack(null);
+                transaction.commit();
+            }
+        });
+
+
         dateTextView = rootView.findViewById(R.id.date_picker_actions);
         calendar = Calendar.getInstance();
 
@@ -222,7 +237,7 @@ public class MainScreen extends Fragment{
 
         if (!popupShown) {
             new Handler().postDelayed(() -> {
-                showInputDialog();
+                showUserInputDialog();
                 markPopupAsShown(sharedPreferences);
             }, 1000);
         }
@@ -232,7 +247,20 @@ public class MainScreen extends Fragment{
         editor.putBoolean(PREF_KEY_POPUP_SHOWN, true);
         editor.apply();
     }
-    private void showInputDialog() {
-        ((MainActivity) getActivity()).showInputDialog();
+    private void showUserInputDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
+        builder.setMessage("Vui lòng nhập thông tin ở \"Thông tin cá nhân\" ")
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                        transaction.replace(R.id.ln_main, new ThongTinCaNhan_ACT());
+                        transaction.addToBackStack(null);
+                        transaction.commit();
+                        dialog.dismiss();
+                    }
+                });
+        // Tạo và hiển thị AlertDialog
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
     }
 }
