@@ -66,7 +66,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="50"
-            android:id="@+id/user_height"
+            android:id="@+id/user_weight"
             android:textSize="24dp"
             android:textColor="@color/light_blue"
             android:layout_margin="15dp"
@@ -91,17 +91,16 @@
         <TextView
             android:layout_width="220dp"
             android:layout_height="wrap_content"
-            android:text="Calories"
+            android:text="Calo cần nạp mỗi ngày"
             android:textSize="20dp"
             android:layout_margin="15dp"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="3000"
+            android:text="300"
             android:textSize="20dp"
             android:layout_margin="15dp"
-            android:textColor="@color/light_blue"
-            />
+            android:textColor="@color/light_blue"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="300dp"

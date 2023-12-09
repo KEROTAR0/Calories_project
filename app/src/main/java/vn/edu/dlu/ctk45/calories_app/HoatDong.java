@@ -30,8 +30,8 @@ public class HoatDong extends Fragment {
         listView.setDividerHeight(getResources().getDimensionPixelSize(R.dimen.divider_height));
 
 
-        String[] foodName = new String[]{"Đi bộ", "Chạy bộ", "Chạy", "Đi xe đạp", "Leo cầu thang", "Tập thể dục", "Nhảy dây", "Bơi", "Yoga"};
-        String[] foodInfo = new String[]{
+        String[] actName = new String[]{"Đi bộ", "Chạy bộ", "Chạy", "Đi xe đạp", "Leo cầu thang", "Tập thể dục", "Nhảy dây", "Bơi", "Yoga"};
+        String[] actInfo = new String[]{
                 "3.5 calo / 1 phút",
                 "6 calo / 1 phút",
                 "10 calo / 1 phút",
@@ -46,12 +46,12 @@ public class HoatDong extends Fragment {
                 , R.drawable.climb_stair, R.drawable.exercise, R.drawable.jumprope, R.drawable.swimming,
                 R.drawable.yoga};
 
-        ArrayList<Food> foodList = new ArrayList<>();
-        for (int i = 0; i < foodName.length; i++) {
-            foodList.add(new Food(foodName[i], foodInfo[i], imgs[i]));
+        ArrayList<Activity> act = new ArrayList<>();
+        for (int i = 0; i < actName.length; i++) {
+            act.add(new Activity(actName[i], actInfo[i], imgs[i]));
         }
 
-        DSMonAn adapter = new DSMonAn(foodList);
+        ActivitiesList adapter = new ActivitiesList(act);
         listView.setAdapter(adapter);
 
         ImageButton backButton = rootView.findViewById(R.id.back);

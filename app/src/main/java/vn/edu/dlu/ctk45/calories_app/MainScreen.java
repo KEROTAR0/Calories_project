@@ -127,9 +127,9 @@ public class MainScreen extends Fragment{
 
         TextView menuItem1 = sideMenuView.findViewById(R.id.menu_1);
         TextView menuItem2 = sideMenuView.findViewById(R.id.menu_2);
-        //TextView menuItem3 = sideMenuView.findViewById(R.id.menu_3);
-        //TextView menuItem4 = sideMenuView.findViewById(R.id.menu_4);
-        //TextView menuItem5 = sideMenuView.findViewById(R.id.menu_5);
+        TextView menuItem3 = sideMenuView.findViewById(R.id.menu_3);
+        TextView menuItem4 = sideMenuView.findViewById(R.id.menu_4);
+        TextView menuItem5 = sideMenuView.findViewById(R.id.menu_5);
         TextView menuItem6 = sideMenuView.findViewById(R.id.menu_6);
         TextView menuItem7 = sideMenuView.findViewById(R.id.menu_7);
 
@@ -164,22 +164,22 @@ public class MainScreen extends Fragment{
         });*/
 
         //loai thuc pham
-        /*menuItem4.setOnClickListener(new View.OnClickListener() {
+        menuItem4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 navigateToLayout4();
                 popupWindow.dismiss();
             }
-        });*/
+        });
 
         //so nhat ky
-        /*menuItem5.setOnClickListener(new View.OnClickListener() {
+        menuItem5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 navigateToLayout5();
                 popupWindow.dismiss();
             }
-        });*/
+        });
 
         //bua an
         menuItem6.setOnClickListener(new View.OnClickListener() {
@@ -212,6 +212,20 @@ public class MainScreen extends Fragment{
         // Navigate to layout 2
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         transaction.replace(R.id.ln_main, new CaiDat());
+        transaction.addToBackStack(null);
+        transaction.commit();
+    }
+    private void navigateToLayout4() {
+        // Navigate to layout 2
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.replace(R.id.ln_main, new LoaiThucPham());
+        transaction.addToBackStack(null);
+        transaction.commit();
+    }
+    private void navigateToLayout5() {
+        // Navigate to layout 2
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.replace(R.id.ln_main, new NhatKy());
         transaction.addToBackStack(null);
         transaction.commit();
     }

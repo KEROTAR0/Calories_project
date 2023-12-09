@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 
@@ -33,6 +32,13 @@ public class MucTieu_ACT extends Fragment {
             if (getActivity() != null) {
                 getActivity().onBackPressed();
             }
+        });
+
+
+
+        ImageButton setGoalButton = rootView.findViewById(R.id.goal_btn);
+        setGoalButton.setOnClickListener(v -> {
+            // Lưu thông tin
         });
 
         return rootView;
