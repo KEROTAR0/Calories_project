@@ -174,7 +174,7 @@
         android:layout_height="wrap_content"
         android:text="Về ứng dụng"
         android:textSize="16dp"
-        android:id="@+id/menu_9"
+        android:id="@+id/menu_8"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="20dp"/>
     <TextView
@@ -182,6 +182,7 @@
         android:layout_height="wrap_content"
         android:text="Câu hỏi thường gặp"
         android:textSize="16dp"
+        android:id="@+id/menu_9"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="20dp"/>
 </LinearLayout>

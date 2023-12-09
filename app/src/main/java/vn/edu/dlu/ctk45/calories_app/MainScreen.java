@@ -132,6 +132,8 @@ public class MainScreen extends Fragment{
         TextView menuItem5 = sideMenuView.findViewById(R.id.menu_5);
         TextView menuItem6 = sideMenuView.findViewById(R.id.menu_6);
         TextView menuItem7 = sideMenuView.findViewById(R.id.menu_7);
+        TextView menuItem8 = sideMenuView.findViewById(R.id.menu_8);
+        TextView menuItem9 = sideMenuView.findViewById(R.id.menu_9);
 
 
         //thong tin ca nhan
@@ -198,10 +200,27 @@ public class MainScreen extends Fragment{
                 popupWindow.dismiss();
             }
         });
+
+        //ve ung dung
+        menuItem8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navigateToLayout8();
+                popupWindow.dismiss();
+            }
+        });
+
+        //cau hoi thuong gap
+        menuItem9.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navigateToLayout9();
+                popupWindow.dismiss();
+            }
+        });
     }
 
     private void navigateToLayout1() {
-        // Navigate to layout 1
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         transaction.replace(R.id.ln_main, new ThongTinCaNhan_ACT());
         transaction.addToBackStack(null);
@@ -209,21 +228,18 @@ public class MainScreen extends Fragment{
     }
 
     private void navigateToLayout2() {
-        // Navigate to layout 2
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         transaction.replace(R.id.ln_main, new CaiDat());
         transaction.addToBackStack(null);
         transaction.commit();
     }
     private void navigateToLayout4() {
-        // Navigate to layout 2
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         transaction.replace(R.id.ln_main, new LoaiThucPham());
         transaction.addToBackStack(null);
         transaction.commit();
     }
     private void navigateToLayout5() {
-        // Navigate to layout 2
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         transaction.replace(R.id.ln_main, new NhatKy());
         transaction.addToBackStack(null);
@@ -231,7 +247,6 @@ public class MainScreen extends Fragment{
     }
 
     private void navigateToLayout6() {
-        // Navigate to layout 1
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         transaction.replace(R.id.ln_main, new BuaAn());
         transaction.addToBackStack(null);
@@ -239,9 +254,22 @@ public class MainScreen extends Fragment{
     }
 
     private void navigateToLayout7() {
-        // Navigate to layout 1
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         transaction.replace(R.id.ln_main, new MucTieu_ACT());
+        transaction.addToBackStack(null);
+        transaction.commit();
+    }
+
+    private void navigateToLayout8() {
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.replace(R.id.ln_main, new ThongTinUngDung());
+        transaction.addToBackStack(null);
+        transaction.commit();
+    }
+
+    private void navigateToLayout9() {
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.replace(R.id.ln_main, new CauHoiThuongGap());
         transaction.addToBackStack(null);
         transaction.commit();
     }

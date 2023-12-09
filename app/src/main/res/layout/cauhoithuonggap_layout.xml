@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/green"
+        android:layout_weight="0"
+        android:paddingBottom="10dp">
+        <ImageButton
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/back"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/green"
+            android:id="@+id/back"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Câu hỏi thường gặp"
+            android:textSize="32dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="30dp"/>
+    </LinearLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="1. Làm cách nào để ứng dụng tính toán calo tiêu thụ của tôi?"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:paddingBottom="8dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Thông thường, ứng dụng sẽ sử dụng một công thức tính toán dựa trên thông tin về trọng lượng, chiều cao, tuổi và mức độ hoạt động của bạn."
+                android:textSize="16sp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="2. Các yếu tố nào ứng dụng sẽ sử dụng để tính toán lượng calo?"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:paddingTop="16dp"
+                android:paddingBottom="8dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Thông tin cá nhân như trọng lượng, chiều cao, tuổi cùng với loại hoạt động và thời gian hoạt động sẽ được dùng để tính toán."
+                android:textSize="16sp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="3. Làm thế nào để nhập thông tin cá nhân để ứng dụng tính toán chính xác?"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:paddingTop="16dp"
+                android:paddingBottom="8dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Thường bạn sẽ được yêu cầu nhập thông tin cá nhân khi bạn mở ứng dụng lần đầu hoặc chỉnh sửa trong mục Thông tin cá nhân."
+                android:textSize="16sp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="4. Ứng dụng có cung cấp dữ liệu về lượng calo của các loại thức ăn khác nhau không?"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:paddingTop="16dp"
+                android:paddingBottom="8dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Ứng dụng có cơ sở dữ liệu về lượng calo của các loại thực phẩm để bạn có thể theo dõi lượng calo tiêu thụ hàng ngày."
+                android:textSize="16sp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="5. Có phải tôi cần kết hợp việc nhập liệu với hoạt động thể chất để ứng dụng tính toán chính xác calo tiêu thụ không?"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:paddingTop="16dp"
+                android:paddingBottom="8dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Đúng vậy, việc nhập liệu về hoạt động thể chất giúp ứng dụng tính toán chính xác lượng calo tiêu thụ dựa trên mức độ hoạt động của bạn."
+                android:textSize="16sp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="6. Làm thế nào để theo dõi lượng calo tiêu thụ hàng ngày của tôi trong ứng dụng?"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:paddingTop="16dp"
+                android:paddingBottom="8dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Thông thường, bạn có thể theo dõi lượng calo tiêu thụ hàng ngày thông qua Nhật ký trong ứng dụng."
+                android:textSize="16sp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="7. Cách tính toán lượng calo tiêu thụ khi tôi vận động trong thời gian dài như chạy bộ hoặc đạp xe?"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:paddingTop="16dp"
+                android:paddingBottom="8dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Thường thì ứng dụng sẽ tính toán lượng calo dựa trên thông tin về loại hoạt động, thời gian, và mức độ cường độ."
+                android:textSize="16sp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="8. Làm thế nào để đảm bảo rằng tính toán calo tiêu thụ trong ứng dụng là chính xác?"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:paddingTop="16dp"
+                android:paddingBottom="8dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Việc đảm bảo chính xác phụ thuộc vào việc nhập liệu chính xác thông tin cá nhân và hoạt động thể chất."
+                android:textSize="16sp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="9. Có cần thiết phải tham khảo ý kiến của chuyên gia dinh dưỡng khi sử dụng ứng dụng tính toán calo tiêu thụ không?"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:paddingTop="16dp"
+                android:paddingBottom="8dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Đôi khi việc tham khảo ý kiến chuyên gia dinh dưỡng có thể giúp bạn hiểu rõ hơn về việc tính toán lượng calo cũng như ảnh hưởng của chúng đối với sức khỏe của bạn."
+                android:textSize="16sp"/>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

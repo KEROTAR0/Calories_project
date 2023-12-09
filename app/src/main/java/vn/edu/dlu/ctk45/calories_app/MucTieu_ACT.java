@@ -36,10 +36,10 @@ public class MucTieu_ACT extends Fragment {
 
 
 
-        ImageButton setGoalButton = rootView.findViewById(R.id.goal_btn);
+        /*ImageButton setGoalButton = rootView.findViewById(R.id.goal_btn);
         setGoalButton.setOnClickListener(v -> {
             // Lưu thông tin
-        });
+        });*/
 
         return rootView;
     }
