@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:background="@color/green">
+        <ImageButton
+            android:id="@+id/imageButton2"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="5dp"
+            app:srcCompat="@drawable/back"
+            android:background="@color/green"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="370dp"
+        android:layout_height="95dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="28dp"
+        android:orientation="horizontal"
+        android:weightSum="10">
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:src="@drawable/food_banh_bao" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="91dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="15sp"
+            android:layout_weight="7"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bánh bao"
+                android:textColor="@color/black"
+                android:textSize="21sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Calo: 328 kcal/1 cái"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Protein: 16.1g"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Fat: 7.9g"
+                android:textSize="16sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:text="Thông tin món ăn"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:textColor="@color/black"/>
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:text="Bánh bao nhân thịt là món ăn vặt tuyệt vời cho tất cả mọi người, nhất là với những lúc bụng đói. Vỏ bánh trắng ngần hòa cùng nhân thịt nạc, trứng cút, nấm mèo đậm đà hương vị bên trong đã khiến bánh bao trở thành món khoái khẩu của nhiều người."
+        android:textColor="@color/black"
+        android:textSize="20dp"/>
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60dp"
+        android:text="Thêm món ăn"
+        android:background="@drawable/shape_radius_main_layout"
+        android:layout_marginTop="270dp"/>
+</LinearLayout>

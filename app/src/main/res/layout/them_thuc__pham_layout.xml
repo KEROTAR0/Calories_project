@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/green"
+        android:layout_weight="0"
+        android:paddingBottom="10dp">
+        <ImageButton
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/back"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/green"
+            android:id="@+id/back"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Thêm thực phẩm"
+            android:textSize="32dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="30dp"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:layout_marginLeft="10dp"
+        android:text="Thông tin thực phẩm"
+        android:textSize="20dp"
+        android:textColor="@color/black"
+        android:textStyle="bold"/>
+
+    <EditText
+        android:id="@+id/food_nameInput"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/shape_radius_main_layout"
+        android:hint="  Tên thực phẩm" />
+
+    <EditText
+        android:id="@+id/food_ammountInput"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/shape_radius_main_layout"
+        android:hint="  Số lượng"
+        android:inputType="number"/>
+    <EditText
+        android:id="@+id/energy_amountInput"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/shape_radius_main_layout"
+        android:hint="  Năng lượng"/>
+
+    <EditText
+        android:id="@+id/calc_unitInput"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/shape_radius_main_layout"
+        android:hint="  Đơn vị"
+        android:inputType="number"/>
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:layout_marginLeft="10dp"
+        android:text="Thông tin dinh dưỡng"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:textColor="@color/black"/>
+
+    <EditText
+        android:id="@+id/saltInput"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/shape_radius_main_layout"
+        android:hint="  Sodium/Muối" />
+
+    <EditText
+        android:id="@+id/proteinInput"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/shape_radius_main_layout"
+        android:hint="  Protein"
+        android:inputType="number"/>
+    <EditText
+        android:id="@+id/carbInput"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/shape_radius_main_layout"
+        android:hint="  Carb/Chất bột đường"/>
+
+    <EditText
+        android:id="@+id/fattInput"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/shape_radius_main_layout"
+        android:hint="  Fat/Chất béo"
+        android:inputType="number"/>
+    <EditText
+        android:id="@+id/calciumInput"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/shape_radius_main_layout"
+        android:hint="  Calcium/Canxi"
+        android:inputType="number"/>
+    <EditText
+        android:id="@+id/cholesterolInput"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/shape_radius_main_layout"
+        android:hint="  Cholesterol"
+        android:inputType="number"/>
+</LinearLayout>
