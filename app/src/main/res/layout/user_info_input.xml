@@ -35,13 +35,13 @@
         android:id="@+id/heightInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Chiều cao [Xăng-ti-mét]"
+        android:hint="Chiều cao [cm]"
         android:inputType="number"/>
     <EditText
         android:id="@+id/weightInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Cân nặng [Kí-lô]"
+        android:hint="Cân nặng [kg]"
         android:inputType="number"/>
 
 </LinearLayout>
