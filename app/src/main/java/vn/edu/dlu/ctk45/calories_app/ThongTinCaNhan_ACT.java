@@ -1,12 +1,9 @@
 package vn.edu.dlu.ctk45.calories_app;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-
 import android.app.AlertDialog;
-import android.content.Context;
+import android.content.ContentValues;
 import android.content.DialogInterface;
-import android.content.SharedPreferences;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,9 +15,9 @@ import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.content.ContentValues;
-import android.database.sqlite.SQLiteDatabase;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 public class ThongTinCaNhan_ACT extends Fragment {
     private DatabaseHelper dbHelper;
@@ -61,7 +58,6 @@ public class ThongTinCaNhan_ACT extends Fragment {
         return rootView;
     }
 
-
     public void showInputDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
         LayoutInflater inflater = requireActivity().getLayoutInflater();
@@ -74,14 +70,14 @@ public class ThongTinCaNhan_ACT extends Fragment {
         EditText editWeightGender = dialogView.findViewById(R.id.weightInput);
 
         Spinner spinnerGender = dialogView.findViewById(R.id.spn_gender);
-        String[] goals = {"Nam", "Nữ", "Giới tính khác"};
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_spinner_item, goals);
+        String[] genders = {"Nam", "Nữ", "Giới tính khác"};
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_spinner_item, genders);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerGender.setAdapter(adapter);
+
         builder.setPositiveButton("Xác nhận", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-
                 String name = editTextName.getText().toString();
                 String age = editTextAge.getText().toString();
                 String gender = spinnerGender.getSelectedItem().toString();
@@ -89,7 +85,6 @@ public class ThongTinCaNhan_ACT extends Fragment {
                 String weight = editWeightGender.getText().toString();
 
                 updateUserInfo(name, age, gender, height, weight);
-
                 dialog.dismiss();
             }
         });
@@ -102,11 +97,9 @@ public class ThongTinCaNhan_ACT extends Fragment {
         });
 
         builder.create().show();
-
     }
 
     public void updateUserInfo(String name, String age, String gender, String height, String weight) {
-
         View view = getView();
         if (view != null) {
             TextView textViewName = view.findViewById(R.id.user_name);
@@ -124,6 +117,11 @@ public class ThongTinCaNhan_ACT extends Fragment {
                 textViewGender.setText(gender);
                 textViewHeight.setText(height);
                 textViewWeight.setText(weight);
+
+                // Calculate and display calories needed
+                double caloriesNeeded = calculateCaloriesNeeded(age, gender, height, weight);
+                // You can display or use the calculated value as needed
+                // For example, you might show it in a TextView or store it in the database
             }
         }
     }
@@ -165,4 +163,36 @@ public class ThongTinCaNhan_ACT extends Fragment {
         db.delete(DatabaseHelper.TABLE_NAME, null, null);
         db.close();
     }
+
+    public double calculateCaloriesNeeded(String age, String gender, String height, String weight) {
+        // Check if any of the input values are empty
+        if (age.isEmpty() || gender.isEmpty() || height.isEmpty() || weight.isEmpty()) {
+            Toast.makeText(requireContext(), "Vui lòng nhập đủ thông tin", Toast.LENGTH_SHORT).show();
+            return 0.0; // Return 0 if there is missing information
+        }
+
+        // Convert input values to appropriate data types
+        int userAge = Integer.parseInt(age);
+        int userHeight = Integer.parseInt(height);
+        int userWeight = Integer.parseInt(weight);
+
+        // Harris-Benedict equation to calculate BMR
+        double bmr;
+        if (gender.equals("Nam")) {
+            bmr = 88.362 + (13.397 * userWeight) + (4.799 * userHeight) - (5.677 * userAge);
+        } else if (gender.equals("Nữ")) {
+            bmr = 447.593 + (9.247 * userWeight) + (3.098 * userHeight) - (4.330 * userAge);
+        } else {
+            // Use a default value or handle other gender options
+            bmr = 0.0;
+        }
+
+        // Activity factor to estimate TDEE
+        double activityFactor = 1.2; // Assume a sedentary lifestyle as a default
+        double tdee = bmr * activityFactor;
+
+        // You can return TDEE or use it further based on your application logic
+        return tdee;
+    }
 }
+
