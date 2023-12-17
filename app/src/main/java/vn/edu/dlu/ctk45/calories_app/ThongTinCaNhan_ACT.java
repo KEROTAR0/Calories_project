@@ -18,14 +18,17 @@ import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.content.ContentValues;
+import android.database.sqlite.SQLiteDatabase;
 
 
 public class ThongTinCaNhan_ACT extends Fragment {
-
+    private DatabaseHelper dbHelper;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        dbHelper = new DatabaseHelper(requireContext());
         View rootView = inflater.inflate(R.layout.thong_tin_ca_nhan, container,
                 false);
         if (getActivity() != null && getActivity() instanceof AppCompatActivity) {
@@ -101,10 +104,11 @@ public class ThongTinCaNhan_ACT extends Fragment {
         builder.create().show();
 
     }
+
     public void updateUserInfo(String name, String age, String gender, String height, String weight) {
 
         View view = getView();
-        if(view != null) {
+        if (view != null) {
             TextView textViewName = view.findViewById(R.id.user_name);
             TextView textViewAge = view.findViewById(R.id.user_age);
             TextView textViewGender = view.findViewById(R.id.user_gender);
@@ -113,8 +117,8 @@ public class ThongTinCaNhan_ACT extends Fragment {
 
             if (name.isEmpty() || age.isEmpty() || gender.isEmpty() || height.isEmpty() || weight.isEmpty()) {
                 Toast.makeText(getContext(), "Vui lòng nhập đủ thông tin", Toast.LENGTH_SHORT).show();
-            }
-            else {
+            } else {
+                saveUserInfoToDatabase(name, age, gender, height, weight);
                 textViewName.setText(name);
                 textViewAge.setText(age);
                 textViewGender.setText(gender);
@@ -123,22 +127,42 @@ public class ThongTinCaNhan_ACT extends Fragment {
             }
         }
     }
-    public void delUserInfo()
-    {
+
+    private void saveUserInfoToDatabase(String name, String age, String gender, String height, String weight) {
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(DatabaseHelper.COLUMN_NAME, name);
+        values.put(DatabaseHelper.COLUMN_AGE, age);
+        values.put(DatabaseHelper.COLUMN_GENDER, gender);
+        values.put(DatabaseHelper.COLUMN_HEIGHT, height);
+        values.put(DatabaseHelper.COLUMN_WEIGHT, weight);
+
+        db.insert(DatabaseHelper.TABLE_NAME, null, values);
+        db.close();
+    }
+
+    public void delUserInfo() {
         View view = getView();
+        if (view != null) {
+            TextView textViewName = view.findViewById(R.id.user_name);
+            TextView textViewAge = view.findViewById(R.id.user_age);
+            TextView textViewGender = view.findViewById(R.id.user_gender);
+            TextView textViewHeight = view.findViewById(R.id.user_height);
+            TextView textViewWeight = view.findViewById(R.id.user_weight);
 
-        TextView textViewName = view.findViewById(R.id.user_name);
-        TextView textViewAge = view.findViewById(R.id.user_age);
-        TextView textViewGender = view.findViewById(R.id.user_gender);
-        TextView textViewHeight = view.findViewById(R.id.user_height);
-        TextView textViewWeight = view.findViewById(R.id.user_weight);
+            textViewName.setText(R.string.user_name);
+            textViewAge.setText(R.string.user_age);
+            textViewGender.setText(R.string.user_gender);
+            textViewHeight.setText(R.string.user_height);
+            textViewWeight.setText(R.string.user_weight);
 
-        textViewName.setText(R.string.user_name);
-        textViewAge.setText(R.string.user_age);
-        textViewGender.setText(R.string.user_gender);
-        textViewHeight.setText(R.string.user_height);
-        textViewWeight.setText(R.string.user_weight);
+            deleteUserInfoFromDatabase();
+        }
+    }
 
-
+    private void deleteUserInfoFromDatabase() {
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        db.delete(DatabaseHelper.TABLE_NAME, null, null);
+        db.close();
     }
 }
