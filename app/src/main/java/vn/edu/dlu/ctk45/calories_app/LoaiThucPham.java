@@ -5,12 +5,14 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import java.util.ArrayList;
 
@@ -24,12 +26,9 @@ public class LoaiThucPham extends Fragment {
         }
 
         ListView listView = rootView.findViewById(R.id.lv_food_category);
-
         Drawable divider = ContextCompat.getDrawable(requireContext(), R.drawable.divider);
-
         listView.setDivider(divider);
         listView.setDividerHeight(getResources().getDimensionPixelSize(R.dimen.divider_height));
-
 
         String[] fcName = new String[]{"Trái cây", "Các loại thịt", "Ngũ cốc", "Hải sản", "Rau củ quả"};
         String[] fcInfo = new String[]{
@@ -49,6 +48,34 @@ public class LoaiThucPham extends Fragment {
 
         FoodCategoryList adapter = new FoodCategoryList(fcList);
         listView.setAdapter(adapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                Fragment fragmentToShow;
+
+                switch (position) {
+                    case 0: // Trái cây
+                        fragmentToShow = new FruitFragment();
+                        break;
+                    //case 1: // Các loại thịt
+                    //    fragmentToShow = new CacLoaiThit(); // Tạo fragment tương ứng
+                    //    break;
+                    // Thêm các case khác tương ứng
+                    default:
+                        fragmentToShow = null; // Fragment mặc định nếu không có trường hợp nào khớp
+                        break;
+                }
+
+                if (fragmentToShow != null) {
+                    FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
+                    fragmentManager.beginTransaction()
+                            .replace(R.id.ln_main, fragmentToShow) // R.id.fragment_container là ID của layout chứa fragment
+                            .addToBackStack(null) // Cho phép quay lại fragment trước đó
+                            .commit();
+                }
+            }
+        });
 
         ImageButton backButton = rootView.findViewById(R.id.back);
         backButton.setOnClickListener(v -> {

@@ -30,23 +30,19 @@
     </LinearLayout>
 
     <ImageView
-        android:id="@+id/app_icon"
-        android:layout_marginLeft="150dp"
         android:layout_marginBottom="5dp"
-        android:layout_width="100dp"
-        android:layout_height="match_parent"
-        android:layout_weight="400"
-        android:graivity="center"
-        app:srcCompat="@drawable/app_icon" />
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:gravity="center"
+        android:src="@drawable/app_icon"/>
 
     <TextView
-        android:id="@+id/textView17"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Phiên bản ứng dụng: 1.0.0"
         android:textSize="22dp"
-        android:layout_marginBottom="5dp"
-        android:layout_marginLeft="20dp"/>
+        android:textAlignment="center"
+        android:layout_marginBottom="5dp"/>
 
     <ImageView
         android:id="@+id/imageView4"
@@ -71,7 +67,7 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/textView19"
+            android:id="@+id/cong_thuc_nau_an"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="50dp"
@@ -79,7 +75,7 @@
             android:textSize="20dp" />
 
         <TextView
-            android:id="@+id/textView20"
+            android:id="@+id/phuong_phap_giam_can"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="50dp"
