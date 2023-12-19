@@ -5,38 +5,22 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class FoodDatabaseHelper extends SQLiteOpenHelper {
 
-    private static final String DATABASE_NAME = "food_info.db";
     private static final int DATABASE_VERSION = 1;
+    private static final String DATABASE_NAME = "food_database.db";
+    private static final String TABLE_FOOD = "food";
 
-    public static final String TABLE_NAME = "food_info";
-    public static final String COLUMN_ID = "id";
-    public static final String COLUMN_NAME = "name";
-    public static final String COLUMN_AMOUNT = "amount";
-    public static final String COLUMN_ENERGY = "energy";
-    public static final String COLUMN_UNIT = "unit";
-    public static final String COLUMN_SALT = "salt";
-    public static final String COLUMN_PROTEIN = "protein";
-    public static final String COLUMN_CARB = "carb";
-    public static final String COLUMN_FAT = "fat";
-    public static final String COLUMN_CALCIUM = "calcium";
-    public static final String COLUMN_CHOLESTEROL = "cholesterol";
-
-    private static final String CREATE_TABLE =
-            "CREATE TABLE " + TABLE_NAME + " (" +
-                    COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
-                    COLUMN_NAME + " TEXT," +
-                    COLUMN_AMOUNT + " TEXT," +
-                    COLUMN_ENERGY + " TEXT," +
-                    COLUMN_UNIT + " TEXT," +
-                    COLUMN_SALT + " TEXT," +
-                    COLUMN_PROTEIN + " TEXT," +
-                    COLUMN_CARB + " TEXT," +
-                    COLUMN_FAT + " TEXT," +
-                    COLUMN_CALCIUM + " TEXT," +
-                    COLUMN_CHOLESTEROL + " TEXT)";
+    public static final String KEY_ID = "id";
+    public static final String KEY_NAME = "ten_mon";
+    public static final String KEY_INFO = "thong_tin_mon";
+    public static final String KEY_IMAGE = "image";
+    public static final String KEY_AMOUNT = "amount"; // New column for amount
 
     public FoodDatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -44,71 +28,139 @@ public class FoodDatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(CREATE_TABLE);
+        String CREATE_FOOD_TABLE = "CREATE TABLE " + TABLE_FOOD +
+                "(" +
+                KEY_ID + " INTEGER PRIMARY KEY," +
+                KEY_NAME + " TEXT," +
+                KEY_INFO + " TEXT," +
+                KEY_IMAGE + " INTEGER," +
+                KEY_AMOUNT + " INTEGER" + // New column for amount
+                ")";
+        Log.d("SQL", "onCreate: " + CREATE_FOOD_TABLE);
+        db.execSQL(CREATE_FOOD_TABLE);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        // Handle database upgrades here
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_FOOD);
+        Log.d("SQL", "onUpgrade: Table dropped");
+        onCreate(db);
     }
 
-    // CRUD Operations
+    public void addFood(Food food) {
+        SQLiteDatabase db = this.getWritableDatabase();
 
-    public long addFoodInfo(String name, String amount, String energy, String unit, String salt,
-                            String protein, String carb, String fat, String calcium, String cholesterol) {
-        SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(COLUMN_NAME, name);
-        values.put(COLUMN_AMOUNT, amount);
-        values.put(COLUMN_ENERGY, energy);
-        values.put(COLUMN_UNIT, unit);
-        values.put(COLUMN_SALT, salt);
-        values.put(COLUMN_PROTEIN, protein);
-        values.put(COLUMN_CARB, carb);
-        values.put(COLUMN_FAT, fat);
-        values.put(COLUMN_CALCIUM, calcium);
-        values.put(COLUMN_CHOLESTEROL, cholesterol);
+        values.put(KEY_NAME, food.getTen_mon());
+        values.put(KEY_INFO, food.getThong_tin_mon());
+        values.put(KEY_IMAGE, food.getImage());
+        values.put(KEY_AMOUNT, 0); // Initialize amount to 0
 
-        long newRowId = db.insert(TABLE_NAME, null, values);
+        db.insert(TABLE_FOOD, null, values);
         db.close();
-        return newRowId;
     }
 
-    public Cursor getAllFoodInfo() {
-        SQLiteDatabase db = getReadableDatabase();
-        String[] projection = {
-                COLUMN_ID,
-                COLUMN_NAME,
-                COLUMN_AMOUNT,
-                COLUMN_ENERGY,
-                COLUMN_UNIT,
-                COLUMN_SALT,
-                COLUMN_PROTEIN,
-                COLUMN_CARB,
-                COLUMN_FAT,
-                COLUMN_CALCIUM,
-                COLUMN_CHOLESTEROL
-        };
+    public Food getFood(int id) {
+        SQLiteDatabase db = this.getReadableDatabase();
 
-        return db.query(
-                TABLE_NAME,
-                projection,
+        Cursor cursor = db.query(
+                TABLE_FOOD,
+                new String[]{KEY_ID, KEY_NAME, KEY_INFO, KEY_IMAGE, KEY_AMOUNT},
+                KEY_ID + "=?",
+                new String[]{String.valueOf(id)},
+                null,
+                null,
+                null,
+                null
+        );
+
+        if (cursor != null) {
+            cursor.moveToFirst();
+
+            Food food = new Food(
+                    cursor.getString(1), // name
+                    cursor.getString(2), // info
+                    cursor.getInt(3),      // image
+                    cursor.getInt(4)      // amount
+            );
+            food.setId(Integer.parseInt(cursor.getString(0)));
+
+            cursor.close();
+            return food;
+        } else {
+            return null;
+        }
+    }
+
+    public List<Food> getAllFood() {
+        List<Food> foodList = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.query(
+                TABLE_FOOD,
+                new String[]{KEY_ID, KEY_NAME, KEY_INFO, KEY_IMAGE, KEY_AMOUNT},
                 null,
                 null,
                 null,
                 null,
                 null
         );
+
+        if (cursor != null) {
+            int idIndex = cursor.getColumnIndex(KEY_ID);
+            int nameIndex = cursor.getColumnIndex(KEY_NAME);
+            int infoIndex = cursor.getColumnIndex(KEY_INFO);
+            int imageIndex = cursor.getColumnIndex(KEY_IMAGE);
+            int amountIndex = cursor.getColumnIndex(KEY_AMOUNT);
+
+            while (cursor.moveToNext()) {
+                int id = cursor.getInt(idIndex);
+                String name = cursor.getString(nameIndex);
+                String info = cursor.getString(infoIndex);
+                int image = cursor.getInt(imageIndex);
+                int amount = cursor.getInt(amountIndex);
+
+                Food food = new Food(name, info, image, amount);
+                foodList.add(food);
+            }
+
+            cursor.close();
+        }
+
+        return foodList;
     }
 
-    public void deleteFoodInfo(long foodId) {
-        SQLiteDatabase db = getWritableDatabase();
-        String selection = COLUMN_ID + "=?";
-        String[] selectionArgs = {String.valueOf(foodId)};
-        db.delete(TABLE_NAME, selection, selectionArgs);
+    public void updateFoodAmount(int foodId, int amount) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_AMOUNT, amount);
+
+        int rowsAffected = db.update(
+                TABLE_FOOD,
+                values,
+                KEY_ID + "=?",
+                new String[]{String.valueOf(foodId)}
+        );
+        Log.d("FoodDatabaseHelper", "Rows affected: " + rowsAffected);
+
+        db.update(
+                TABLE_FOOD,
+                values,
+                KEY_ID + "=?",
+                new String[]{String.valueOf(foodId)}
+        );
+
         db.close();
     }
 
-    // Add other CRUD operations as needed
+    public void deleteFood(int foodId) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(
+                TABLE_FOOD,
+                KEY_ID + "=?",
+                new String[]{String.valueOf(foodId)}
+        );
+        db.close();
+    }
 }
 
