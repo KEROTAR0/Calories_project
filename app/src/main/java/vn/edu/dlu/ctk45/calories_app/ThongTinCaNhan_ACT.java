@@ -15,6 +15,8 @@ import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.util.Log;
+
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -100,6 +102,7 @@ public class ThongTinCaNhan_ACT extends Fragment {
     }
 
     public void updateUserInfo(String name, String age, String gender, String height, String weight) {
+        Log.d("TAG", "updateUserInfo Called");
         View view = getView();
         if (view != null) {
             TextView textViewName = view.findViewById(R.id.user_name);
@@ -135,9 +138,11 @@ public class ThongTinCaNhan_ACT extends Fragment {
         values.put(DatabaseHelper.COLUMN_HEIGHT, height);
         values.put(DatabaseHelper.COLUMN_WEIGHT, weight);
 
-        db.insert(DatabaseHelper.TABLE_NAME, null, values);
+        db.update(DatabaseHelper.TABLE_NAME, values, null, null);
+
         db.close();
     }
+
 
     public void delUserInfo() {
         View view = getView();
