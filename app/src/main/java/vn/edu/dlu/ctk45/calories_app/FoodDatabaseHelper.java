@@ -8,19 +8,72 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.DoubleSummaryStatistics;
 import java.util.List;
 
 public class FoodDatabaseHelper extends SQLiteOpenHelper {
 
     private static final int DATABASE_VERSION = 1;
-    private static final String DATABASE_NAME = "food_database.db";
-    private static final String TABLE_FOOD = "food";
+    private static final String DATABASE_NAME = "qlmonan.db";
+    public static final String TABLE_FOOD_FRUIT = "FRUIT";
+    public static final String TABLE_FOOD_MEAT = "MEAT";
+    public static final String TABLE_FOOD_RICE = "RICE";
+    public static final String TABLE_FOOD_SEAFOOD = "SEAFOOD";
+    public static final String TABLE_FOOD_VEGETABLE = "VEGETABLE";
+    public static final String TABLE_USER = "USER";
 
-    public static final String KEY_ID = "id";
-    public static final String KEY_NAME = "ten_mon";
-    public static final String KEY_INFO = "thong_tin_mon";
-    public static final String KEY_IMAGE = "image";
-    public static final String KEY_AMOUNT = "amount"; // New column for amount
+    //fruit
+    public static final String TABLE_FOOD_FRUIT_ID = "ma_mon";
+    public static final String TABLE_FOOD_FRUIT_NAME = "ten_mon";
+    public static final String TABLE_FOOD_FRUIT_CALO = "calo_mon";
+    public static final String TABLE_FOOD_FRUIT_PROTEIN = "protein_mon";
+    public static final String TABLE_FOOD_FRUIT_FAT = "chat_beo_mon";
+    public static final String TABLE_FOOD_FRUIT_DETAIL = "mota_mon";
+    public static final String TABLE_FOOD_FRUIT_IMG = "hinh_anh";
+
+    //meat
+    public static final String TABLE_FOOD_MEAT_ID = "ma_mon";
+    public static final String TABLE_FOOD_MEAT_NAME = "ten_mon";
+    public static final String TABLE_FOOD_MEAT_CALO = "calo_mon";
+    public static final String TABLE_FOOD_MEAT_PROTEIN = "protein_mon";
+    public static final String TABLE_FOOD_MEAT_FAT = "chat_beo_mon";
+    public static final String TABLE_FOOD_MEAT_DETAIL = "mota_mon";
+    public static final String TABLE_FOOD_MEAT_IMG = "hinh_anh";
+
+    //rice
+    public static final String TABLE_FOOD_RICE_ID = "ma_mon";
+    public static final String TABLE_FOOD_RICE_NAME = "ten_mon";
+    public static final String TABLE_FOOD_RICE_CALO = "calo_mon";
+    public static final String TABLE_FOOD_RICE_PROTEIN = "protein_mon";
+    public static final String TABLE_FOOD_RICE_FAT = "chat_beo_mon";
+    public static final String TABLE_FOOD_RICE_DETAIL = "mota_mon";
+    public static final String TABLE_FOOD_RICE_IMG = "hinh_anh";
+
+    //seafood
+    public static final String TABLE_FOOD_SEAFOOD_ID = "ma_mon";
+    public static final String TABLE_FOOD_SEAFOOD_NAME = "ten_mon";
+    public static final String TABLE_FOOD_SEAFOOD_CALO = "calo_mon";
+    public static final String TABLE_FOOD_SEAFOOD_PROTEIN = "protein_mon";
+    public static final String TABLE_FOOD_SEAFOOD_FAT = "chat_beo_mon";
+    public static final String TABLE_FOOD_SEAFOOD_DETAIL = "mota_mon";
+    public static final String TABLE_FOOD_SEAFOOD_IMG = "hinh_anh";
+
+    //vegetable
+    public static final String TABLE_FOOD_VEGETABLE_ID = "ma_mon";
+    public static final String TABLE_FOOD_VEGETABLE_NAME = "ten_mon";
+    public static final String TABLE_FOOD_VEGETABLE_CALO = "calo_mon";
+    public static final String TABLE_FOOD_VEGETABLE_PROTEIN = "protein_mon";
+    public static final String TABLE_FOOD_VEGETABLE_FAT = "chat_beo_mon";
+    public static final String TABLE_FOOD_VEGETABLE_DETAIL = "mota_mon";
+    public static final String TABLE_FOOD_VEGETABLE_IMG = "hinh_anh";
+
+    //user
+    public static final String TABLE_USER_NAME = "ten";
+    public static final String TABLE_USER_AGE = "tuoi";
+    public static final String TABLE_USER_GENDER = "gioi_tinh";
+    public static final String TABLE_USER_WEIGHT = "can_nang";
+    public static final String TABLE_USER_HEIGHT = "chieu_cao";
+
 
     public FoodDatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -28,139 +81,75 @@ public class FoodDatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String CREATE_FOOD_TABLE = "CREATE TABLE " + TABLE_FOOD +
+        String tbFRUIT = "CREATE TABLE " + TABLE_FOOD_FRUIT +
                 "(" +
-                KEY_ID + " INTEGER PRIMARY KEY," +
-                KEY_NAME + " TEXT," +
-                KEY_INFO + " TEXT," +
-                KEY_IMAGE + " INTEGER," +
-                KEY_AMOUNT + " INTEGER" + // New column for amount
-                ")";
-        Log.d("SQL", "onCreate: " + CREATE_FOOD_TABLE);
-        db.execSQL(CREATE_FOOD_TABLE);
+                TABLE_FOOD_FRUIT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                TABLE_FOOD_FRUIT_NAME + " TEXT," +
+                TABLE_FOOD_FRUIT_CALO + " TEXT," +
+                TABLE_FOOD_FRUIT_PROTEIN + " TEXT," +
+                TABLE_FOOD_FRUIT_FAT + " TEXT," +
+                TABLE_FOOD_FRUIT_DETAIL + " TEXT," +
+                TABLE_FOOD_FRUIT_IMG + " TEXT )";
+        String tbMEAT = "CREATE TABLE " + TABLE_FOOD_MEAT +
+                "(" +
+                TABLE_FOOD_MEAT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                TABLE_FOOD_MEAT_NAME + " TEXT," +
+                TABLE_FOOD_MEAT_CALO + " TEXT," +
+                TABLE_FOOD_MEAT_PROTEIN + " TEXT," +
+                TABLE_FOOD_MEAT_FAT + " TEXT," +
+                TABLE_FOOD_MEAT_DETAIL + " TEXT," +
+                TABLE_FOOD_MEAT_IMG + " TEXT )";
+        String tbRICE = "CREATE TABLE " + TABLE_FOOD_RICE +
+                "(" +
+                TABLE_FOOD_RICE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                TABLE_FOOD_RICE_NAME + " TEXT," +
+                TABLE_FOOD_RICE_CALO + " TEXT," +
+                TABLE_FOOD_RICE_PROTEIN + " TEXT," +
+                TABLE_FOOD_RICE_FAT + " TEXT," +
+                TABLE_FOOD_RICE_DETAIL + " TEXT," +
+                TABLE_FOOD_RICE_IMG + " TEXT )";
+        String tbSEAFOOD = "CREATE TABLE " + TABLE_FOOD_SEAFOOD +
+                "(" +
+                TABLE_FOOD_SEAFOOD_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                TABLE_FOOD_SEAFOOD_NAME + " TEXT," +
+                TABLE_FOOD_SEAFOOD_CALO + " TEXT," +
+                TABLE_FOOD_SEAFOOD_PROTEIN + " TEXT," +
+                TABLE_FOOD_SEAFOOD_FAT + " TEXT," +
+                TABLE_FOOD_SEAFOOD_DETAIL + " TEXT," +
+                TABLE_FOOD_SEAFOOD_IMG + " TEXT )";
+        String tbVEGETABLE = "CREATE TABLE " + TABLE_FOOD_VEGETABLE +
+                "(" +
+                TABLE_FOOD_VEGETABLE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                TABLE_FOOD_VEGETABLE_NAME + " TEXT," +
+                TABLE_FOOD_VEGETABLE_CALO + " TEXT," +
+                TABLE_FOOD_VEGETABLE_PROTEIN + " TEXT," +
+                TABLE_FOOD_VEGETABLE_FAT + " TEXT," +
+                TABLE_FOOD_VEGETABLE_DETAIL + " TEXT," +
+                TABLE_FOOD_VEGETABLE_IMG + " TEXT )";
+        String tbUSER = "CREATE TABLE " + TABLE_USER +
+                "(" +
+                TABLE_USER_NAME + " TEXT," +
+                TABLE_USER_AGE + " TEXT," +
+                TABLE_USER_GENDER + " TEXT," +
+                TABLE_USER_WEIGHT + " TEXT," +
+                TABLE_USER_HEIGHT + " TEXT )";
+
+
+        db.execSQL(tbFRUIT);
+        db.execSQL(tbMEAT);
+        db.execSQL(tbRICE);
+        db.execSQL(tbSEAFOOD);
+        db.execSQL(tbVEGETABLE);
+        db.execSQL(tbUSER);
+
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_FOOD);
-        Log.d("SQL", "onUpgrade: Table dropped");
-        onCreate(db);
+
     }
-
-    public void addFood(Food food) {
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        ContentValues values = new ContentValues();
-        values.put(KEY_NAME, food.getTen_mon());
-        values.put(KEY_INFO, food.getThong_tin_mon());
-        values.put(KEY_IMAGE, food.getImage());
-        values.put(KEY_AMOUNT, 0); // Initialize amount to 0
-
-        db.insert(TABLE_FOOD, null, values);
-        db.close();
-    }
-
-    public Food getFood(int id) {
-        SQLiteDatabase db = this.getReadableDatabase();
-
-        Cursor cursor = db.query(
-                TABLE_FOOD,
-                new String[]{KEY_ID, KEY_NAME, KEY_INFO, KEY_IMAGE, KEY_AMOUNT},
-                KEY_ID + "=?",
-                new String[]{String.valueOf(id)},
-                null,
-                null,
-                null,
-                null
-        );
-
-        if (cursor != null) {
-            cursor.moveToFirst();
-
-            Food food = new Food(
-                    cursor.getString(1), // name
-                    cursor.getString(2), // info
-                    cursor.getInt(3),      // image
-                    cursor.getInt(4)      // amount
-            );
-            food.setId(Integer.parseInt(cursor.getString(0)));
-
-            cursor.close();
-            return food;
-        } else {
-            return null;
-        }
-    }
-
-    public List<Food> getAllFood() {
-        List<Food> foodList = new ArrayList<>();
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.query(
-                TABLE_FOOD,
-                new String[]{KEY_ID, KEY_NAME, KEY_INFO, KEY_IMAGE, KEY_AMOUNT},
-                null,
-                null,
-                null,
-                null,
-                null
-        );
-
-        if (cursor != null) {
-            int idIndex = cursor.getColumnIndex(KEY_ID);
-            int nameIndex = cursor.getColumnIndex(KEY_NAME);
-            int infoIndex = cursor.getColumnIndex(KEY_INFO);
-            int imageIndex = cursor.getColumnIndex(KEY_IMAGE);
-            int amountIndex = cursor.getColumnIndex(KEY_AMOUNT);
-
-            while (cursor.moveToNext()) {
-                int id = cursor.getInt(idIndex);
-                String name = cursor.getString(nameIndex);
-                String info = cursor.getString(infoIndex);
-                int image = cursor.getInt(imageIndex);
-                int amount = cursor.getInt(amountIndex);
-
-                Food food = new Food(name, info, image, amount);
-                foodList.add(food);
-            }
-
-            cursor.close();
-        }
-
-        return foodList;
-    }
-
-    public void updateFoodAmount(int foodId, int amount) {
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        ContentValues values = new ContentValues();
-        values.put(KEY_AMOUNT, amount);
-
-        int rowsAffected = db.update(
-                TABLE_FOOD,
-                values,
-                KEY_ID + "=?",
-                new String[]{String.valueOf(foodId)}
-        );
-        Log.d("FoodDatabaseHelper", "Rows affected: " + rowsAffected);
-
-        db.update(
-                TABLE_FOOD,
-                values,
-                KEY_ID + "=?",
-                new String[]{String.valueOf(foodId)}
-        );
-
-        db.close();
-    }
-
-    public void deleteFood(int foodId) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(
-                TABLE_FOOD,
-                KEY_ID + "=?",
-                new String[]{String.valueOf(foodId)}
-        );
-        db.close();
+    public SQLiteDatabase open() {
+        return  this.getWritableDatabase();
     }
 }
 

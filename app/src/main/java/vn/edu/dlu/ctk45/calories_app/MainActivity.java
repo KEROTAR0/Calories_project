@@ -28,7 +28,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         showFrg(new LoadScreen_ACT());
+
+        FoodDatabaseHelper foodDatabaseHelper = new FoodDatabaseHelper(this);
+        foodDatabaseHelper.open();
+
         processCopy();
+
         if (getSupportActionBar() != null) {
             getSupportActionBar().hide();
         }

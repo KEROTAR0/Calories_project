@@ -7,8 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ListView;
-import android.database.Cursor;
-import java.util.List;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -32,9 +30,6 @@ public class BuaToi extends Fragment {
         listView.setDivider(divider);
         listView.setDividerHeight(getResources().getDimensionPixelSize(R.dimen.divider_height));
 
-        FoodDatabaseHelper dbHelper = new FoodDatabaseHelper(requireContext());
-        List<Food> foodList = getAllFoodFromDatabase(dbHelper);
-
 
         String[] foodName = new String[]{"Bánh bao", "Bánh mì", "Xôi", "Cơm chiên", "Bún bò Huế", "Bún đậu mắm tôm", "Cà ri", "Cá viên chiên", "Đùi gà rán",
                 "Hamburger", "Phở bò", "Xíu mại"};
@@ -57,14 +52,12 @@ public class BuaToi extends Fragment {
                 , R.drawable.food_bunbohue, R.drawable.food_bundaumantom, R.drawable.food_cari, R.drawable.food_cavienchien,
                 R.drawable.food_duigaran, R.drawable.food_hamburger, R.drawable.food_phobo, R.drawable.food_xiumai};
 
-    for (int i = 0; i < foodName.length; i++) {
-        Food food = new Food(foodName[i], foodInfo[i], imgs[i], 0);
-        foodList.add(food);
+        ArrayList<Food> foodList = new ArrayList<>();
+        for (int i = 0; i < foodName.length; i++) {
+            foodList.add(new Food(foodName[i], foodInfo[i], imgs[i]));
+        }
 
-        dbHelper.addFood(food);
-    }
-
-        DSMonAn adapter = new DSMonAn(foodList, dbHelper);
+        DSMonAn adapter = new DSMonAn(foodList);
         listView.setAdapter(adapter);
 
         ImageButton backButton = rootView.findViewById(R.id.back);
@@ -75,10 +68,5 @@ public class BuaToi extends Fragment {
         });
         return rootView;
     }
-    private List<Food> getAllFoodFromDatabase(FoodDatabaseHelper dbHelper) {
-        return dbHelper.getAllFood();
-    }
-
-
 }
 
