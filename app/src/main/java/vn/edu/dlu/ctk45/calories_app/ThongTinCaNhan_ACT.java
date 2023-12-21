@@ -55,6 +55,25 @@ public class ThongTinCaNhan_ACT extends Fragment {
             }
         });
 
+        SharedPreferences sharedPreferences = requireContext().getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
+        String name = sharedPreferences.getString("Name", "");
+        String age = sharedPreferences.getString("Age", "");
+        String gender = sharedPreferences.getString("Gender", "");
+        String height = sharedPreferences.getString("Height", "");
+        String weight = sharedPreferences.getString("Weight", "");
+
+
+        TextView textViewName = rootView.findViewById(R.id.user_name);
+        TextView textViewAge = rootView.findViewById(R.id.user_age);
+        TextView textViewGender = rootView.findViewById(R.id.user_gender);
+        TextView textViewHeight = rootView.findViewById(R.id.user_height);
+        TextView textViewWeight = rootView.findViewById(R.id.user_weight);
+
+        textViewName.setText(name);
+        textViewAge.setText(age);
+        textViewGender.setText(gender);
+        textViewHeight.setText(height);
+        textViewWeight.setText(weight);
         return rootView;
     }
 
@@ -121,6 +140,8 @@ public class ThongTinCaNhan_ACT extends Fragment {
                 textViewHeight.setText(height);
                 textViewWeight.setText(weight);
             }
+            saveUserInfoToPreferences(name, age, gender, height, weight);
+
         }
     }
     public void delUserInfo()
@@ -139,6 +160,24 @@ public class ThongTinCaNhan_ACT extends Fragment {
         textViewHeight.setText(R.string.user_height);
         textViewWeight.setText(R.string.user_weight);
 
-
+        SharedPreferences sharedPreferences = requireContext().getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("Name", "Name");
+        editor.putString("Age", "Age");
+        editor.putString("Gender", "Gender");
+        editor.putString("Height", "Height");
+        editor.putString("Weight", "Weight");
+        editor.apply();
     }
+    private void saveUserInfoToPreferences(String name, String age, String gender, String height, String weight) {
+        SharedPreferences sharedPreferences = requireContext().getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("Name", name);
+        editor.putString("Age", age);
+        editor.putString("Gender", gender);
+        editor.putString("Height", height);
+        editor.putString("Weight", weight);
+        editor.apply();
+    }
+
 }

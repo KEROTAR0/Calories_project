@@ -20,7 +20,6 @@ public class FoodDatabaseHelper extends SQLiteOpenHelper {
     public static final String TABLE_FOOD_RICE = "RICE";
     public static final String TABLE_FOOD_SEAFOOD = "SEAFOOD";
     public static final String TABLE_FOOD_VEGETABLE = "VEGETABLE";
-    public static final String TABLE_USER = "USER";
 
     //fruit
     public static final String TABLE_FOOD_FRUIT_ID = "ma_mon";
@@ -67,12 +66,6 @@ public class FoodDatabaseHelper extends SQLiteOpenHelper {
     public static final String TABLE_FOOD_VEGETABLE_DETAIL = "mota_mon";
     public static final String TABLE_FOOD_VEGETABLE_IMG = "hinh_anh";
 
-    //user
-    public static final String TABLE_USER_NAME = "ten";
-    public static final String TABLE_USER_AGE = "tuoi";
-    public static final String TABLE_USER_GENDER = "gioi_tinh";
-    public static final String TABLE_USER_WEIGHT = "can_nang";
-    public static final String TABLE_USER_HEIGHT = "chieu_cao";
 
 
     public FoodDatabaseHelper(Context context) {
@@ -126,22 +119,12 @@ public class FoodDatabaseHelper extends SQLiteOpenHelper {
                 TABLE_FOOD_VEGETABLE_FAT + " TEXT," +
                 TABLE_FOOD_VEGETABLE_DETAIL + " TEXT," +
                 TABLE_FOOD_VEGETABLE_IMG + " TEXT )";
-        String tbUSER = "CREATE TABLE " + TABLE_USER +
-                "(" +
-                TABLE_USER_NAME + " TEXT," +
-                TABLE_USER_AGE + " TEXT," +
-                TABLE_USER_GENDER + " TEXT," +
-                TABLE_USER_WEIGHT + " TEXT," +
-                TABLE_USER_HEIGHT + " TEXT )";
-
 
         db.execSQL(tbFRUIT);
         db.execSQL(tbMEAT);
         db.execSQL(tbRICE);
         db.execSQL(tbSEAFOOD);
         db.execSQL(tbVEGETABLE);
-        db.execSQL(tbUSER);
-
     }
 
     @Override
