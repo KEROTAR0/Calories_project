@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         FoodDatabaseHelper foodDatabaseHelper = new FoodDatabaseHelper(this);
         foodDatabaseHelper.open();
 
-        processCopy();
+        //processCopy();
 
         if (getSupportActionBar() != null) {
             getSupportActionBar().hide();

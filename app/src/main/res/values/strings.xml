@@ -3,10 +3,11 @@
     <string name="text_main">Hôm nay</string>
     <string name="title_activity_thong_tin_ca_nhan">ThongTinCaNhan_ACT</string>
     <string name="user_name">Name</string>
-    <string name="user_age">Age</string>
-    <string name="user_gender">Gender</string>
-    <string name="user_height">Height</string>
-    <string name="user_weight">Weight</string>
-    <string name="goal_info">Đây là lượng calo bạn cần ăn mỗi ngày để hoàn thành mục tiêu của mình. Tùy thuộc vào hoạt động thể chất, độ tuổi, giới tính...</string>
+    <string name="user_age">0</string>
+    <string name="user_gender">Nam</string>
+    <string name="user_height">0</string>
+    <string name="user_weight">0</string>
+    <string name="goal_info_1">Nên nhớ rằng việc tăng cân/giảm cân cần phải được thực hiện một cách cân nhắc và không nên tăng cân/giảm cân quá nhanh để tránh các vấn đề về sức khỏe như tăng cân mỡ quá mức, vấn đề về hệ tiêu hóa, hay suy dinh dưỡng. Điều quan trọng là đảm bảo việc tăng cân/giảm cân diễn ra cùng với một chế độ ăn uống cân đối và kế hoạch tập luyện thể dục phù hợp.</string>
+    <string name="goal_info_2">Đây là lượng calo bạn cần ăn mỗi ngày để hoàn thành mục tiêu của mình. Tùy thuộc vào hoạt động thể chất, độ tuổi, giới tính...</string>
 
 </resources>

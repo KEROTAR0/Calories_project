@@ -90,7 +90,7 @@ public class ThongTinCaNhan_ACT extends Fragment {
         EditText editWeightGender = dialogView.findViewById(R.id.weightInput);
 
         Spinner spinnerGender = dialogView.findViewById(R.id.spn_gender);
-        String[] goals = {"Nam", "Nữ", "Giới tính khác"};
+        String[] goals = {"Nam", "Nữ"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_spinner_item, goals);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerGender.setAdapter(adapter);
@@ -163,10 +163,10 @@ public class ThongTinCaNhan_ACT extends Fragment {
         SharedPreferences sharedPreferences = requireContext().getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("Name", "Name");
-        editor.putString("Age", "Age");
-        editor.putString("Gender", "Gender");
-        editor.putString("Height", "Height");
-        editor.putString("Weight", "Weight");
+        editor.putString("Age", "0");
+        editor.putString("Gender", "Nam");
+        editor.putString("Height", "0");
+        editor.putString("Weight", "0");
         editor.apply();
     }
     private void saveUserInfoToPreferences(String name, String age, String gender, String height, String weight) {
