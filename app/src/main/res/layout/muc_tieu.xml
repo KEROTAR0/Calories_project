@@ -57,13 +57,24 @@
             android:text="@string/goal_info_1"/>
 
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+        <Button
+            android:id="@+id/goal_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/pos_button_layout"
+            android:text="Xác nhận" />
+    </LinearLayout>
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/black_line"
         android:layout_gravity="center"
         android:layout_margin="20dp"/>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -77,7 +88,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="2000"
+            android:text="0"
             android:textSize="20dp"
             android:id="@+id/calo_needed"
             android:layout_margin="15dp"
@@ -94,11 +105,20 @@
             android:text="@string/goal_info_2"
             android:textAlignment="center"/>
     </LinearLayout>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/black_line"
+        android:layout_gravity="center"
+        android:layout_margin="20dp"/>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Xác nhận"
-        android:background="@drawable/pos_button_layout"
+        android:text="   Đổi thông tin người dùng   "
+        android:textColor="@color/light_blue"
+        android:textStyle="bold"
         android:layout_gravity="center"
-        android:id="@+id/goal_btn"/>
+        android:background="@drawable/button_layout"
+        android:id="@+id/btn_doi_info"
+        android:layout_margin="15dp"/>
 </LinearLayout>

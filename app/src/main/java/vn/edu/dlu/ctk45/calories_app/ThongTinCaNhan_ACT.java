@@ -2,6 +2,7 @@ package vn.edu.dlu.ctk45.calories_app;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -34,7 +35,7 @@ public class ThongTinCaNhan_ACT extends Fragment {
 
         Button btn_change_info = rootView.findViewById(R.id.btn_doi_info);
         Button btn_del_info = rootView.findViewById(R.id.btn_xoa_info);
-
+        Button btn_gotoGoal = rootView.findViewById(R.id.btn_muc_tieu);
         btn_change_info.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -48,6 +49,15 @@ public class ThongTinCaNhan_ACT extends Fragment {
                 delUserInfo();
             }
         });
+        btn_gotoGoal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.replace(R.id.ln_main, new MucTieu_ACT());
+                transaction.addToBackStack(null);
+                transaction.commit();
+            }
+        });
         ImageButton backButton = rootView.findViewById(R.id.back);
         backButton.setOnClickListener(v -> {
             if (getActivity() != null) {
@@ -56,11 +66,11 @@ public class ThongTinCaNhan_ACT extends Fragment {
         });
 
         SharedPreferences sharedPreferences = requireContext().getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
-        String name = sharedPreferences.getString("Name", "");
-        String age = sharedPreferences.getString("Age", "");
-        String gender = sharedPreferences.getString("Gender", "");
-        String height = sharedPreferences.getString("Height", "");
-        String weight = sharedPreferences.getString("Weight", "");
+        String name = sharedPreferences.getString("Name", "Name");
+        String age = sharedPreferences.getString("Age", "0");
+        String gender = sharedPreferences.getString("Gender", "Nam");
+        String height = sharedPreferences.getString("Height", "0");
+        String weight = sharedPreferences.getString("Weight", "0");
 
 
         TextView textViewName = rootView.findViewById(R.id.user_name);
@@ -116,7 +126,7 @@ public class ThongTinCaNhan_ACT extends Fragment {
                 dialog.dismiss();
             }
         });
-
+        builder.setCancelable(false);
         builder.create().show();
 
     }
@@ -132,6 +142,7 @@ public class ThongTinCaNhan_ACT extends Fragment {
 
             if (name.isEmpty() || age.isEmpty() || gender.isEmpty() || height.isEmpty() || weight.isEmpty()) {
                 Toast.makeText(getContext(), "Vui lòng nhập đủ thông tin", Toast.LENGTH_SHORT).show();
+                showInputDialog();
             }
             else {
                 textViewName.setText(name);

@@ -20,19 +20,18 @@ import java.io.OutputStream;
 
 public class MainActivity extends AppCompatActivity {
 
-    String DB_PATH_SUFFIX = "/databases/";
-    SQLiteDatabase database=null;
-    String DATABASE_NAME="qlmonan.db";
+    //String DB_PATH_SUFFIX = "/databases/";
+    //SQLiteDatabase database=null;
+    //String DATABASE_NAME="qlmonan.db";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         showFrg(new LoadScreen_ACT());
 
-        FoodDatabaseHelper foodDatabaseHelper = new FoodDatabaseHelper(this);
-        foodDatabaseHelper.open();
+        //FoodDatabaseHelper foodDatabaseHelper = new FoodDatabaseHelper(this);
+        //foodDatabaseHelper.open();
 
-        //processCopy();
 
         if (getSupportActionBar() != null) {
             getSupportActionBar().hide();
@@ -46,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
+/*
     private void processCopy() {
         //pri p vate app
         File dbFile = getDatabasePath(DATABASE_NAME);
@@ -93,6 +92,6 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-
+*/
 
 }

@@ -123,6 +123,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="0"
+                            android:id="@+id/kcal_khuyen_nghi"
                             android:textSize="20sp" />
 
                         <TextView
@@ -150,6 +151,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="0"
+                            android:id="@+id/fat_khuyen_nghi"
                             android:textSize="20sp" />
 
                         <TextView
@@ -177,6 +179,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="0"
+                            android:id="@+id/protein_khuyen_nghi"
                             android:textSize="20sp" />
 
                         <TextView
@@ -222,15 +225,16 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Khuyến nghị N kcal"
-                        android:textSize="16sp" />
+                        android:text="Nên ăn đầy đủ để cung cấp năng lượng cho cơ thể sau khi không ăn qua đêm"
+                        android:textSize="14sp" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3">
 
                     <ImageButton
                         android:id="@+id/add_breakfast"
@@ -275,15 +279,16 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Khuyến nghị N kcal"
-                        android:textSize="16sp" />
+                        android:text="Lượng thức ăn nên vừa phải, cung cấp đủ năng lượng cho buổi chiều mà không gây cảm giác buồn ngủ."
+                        android:textSize="14sp" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3">
 
                     <ImageButton
                         android:id="@+id/add_lunch"
@@ -328,10 +333,10 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Khuyến nghị N kcal"
-                        android:textSize="16sp" />
+                        android:text="Tập trung vào thức ăn dễ tiêu hóa và ít chất béo để không gây khó chịu khi ngủ"
+                        android:textSize="14sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -342,7 +347,7 @@
                         android:id="@+id/add_dinner"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
+                        android:layout_marginLeft="30dp"
                         android:layout_marginTop="30dp"
                         android:src="@drawable/add_ic"
                         android:background="@color/aqua"/>
@@ -382,10 +387,10 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Mục tiêu N kcal"
-                        android:textSize="16sp" />
+                        android:text="Hoạt động tiêu hao calo và cân nặng đồng thời có lợi cho sức khỏe tổng thể."
+                        android:textSize="14sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -396,7 +401,6 @@
                         android:id="@+id/add_activity"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="30dp"
                         android:layout_marginTop="30dp"
                         android:src="@drawable/add_ic"
                         android:background="@color/aqua"/>

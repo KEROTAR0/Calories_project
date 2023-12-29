@@ -2,6 +2,7 @@ package vn.edu.dlu.ctk45.calories_app;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -9,7 +10,9 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -25,24 +28,46 @@ public class MucTieu_ACT extends Fragment {
             ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
         }
         Spinner spinnerGoal = rootView.findViewById(R.id.spn_goal);
-        String[] goals = {"Tăng cân", "Giảm cân", "Cân bằng"};
+        String[] goals = {"Cân bằng", "Giảm cân", "Tăng cân"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_spinner_item, goals);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerGoal.setAdapter(adapter);
-
         TextView caloNeeded = rootView.findViewById(R.id.calo_needed);
         ImageButton backButton = rootView.findViewById(R.id.back);
+        Button infoButton = rootView.findViewById(R.id.btn_doi_info);
+
         backButton.setOnClickListener(v -> {
             if (getActivity() != null) {
                 getActivity().onBackPressed();
             }
         });
-        /*
-        ImageButton setGoalButton = rootView.findViewById(R.id.goal_btn);
-        setGoalButton.setOnClickListener(v -> {
-            sharedPreferences = requireContext().getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
-            String selectedGoal = spinnerGoal.getSelectedItem().toString();
+        infoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.replace(R.id.ln_main, new ThongTinCaNhan_ACT());
+                transaction.addToBackStack(null);
+                transaction.commit();
+            }
+        });
 
+        sharedPreferences = getContext().getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
+        if (caloNeeded.equals("0")){
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putInt("CaloNeeded", 0);
+            editor.apply();
+        }
+        int kcal = sharedPreferences.getInt("CaloNeeded",0 );
+        String savedGoal = sharedPreferences.getString("SelectedGoal", "");
+        if (!savedGoal.isEmpty()) {
+            int position = adapter.getPosition(savedGoal);
+            spinnerGoal.setSelection(position);
+        }
+        caloNeeded.setText(String.valueOf(kcal));
+
+        Button setGoalButton = rootView.findViewById(R.id.goal_btn);
+        setGoalButton.setOnClickListener(v -> {
+            String selectedGoal = spinnerGoal.getSelectedItem().toString();
             try {
                 String gender = sharedPreferences.getString("Gender", "");
                 String age = sharedPreferences.getString("Age", "");
@@ -52,7 +77,7 @@ public class MucTieu_ACT extends Fragment {
                 int nHeight = Integer.parseInt(height);
                 int nWeight = Integer.parseInt(weight);
 
-                double caloRequired;
+                double caloRequired = 0;
                 if(gender.equalsIgnoreCase("Nam")) {
                     caloRequired = 66 + (13.7 * nWeight) + (5 * nHeight) - (6.76 * nAge);
                 } else {
@@ -60,7 +85,7 @@ public class MucTieu_ACT extends Fragment {
                 }
                 int nCaloRequired = (int) caloRequired;
 
-                int caloNeededValue;
+                int caloNeededValue = 0;
                 switch (selectedGoal) {
                     case "Tăng cân":
                         caloNeededValue = nCaloRequired + 300;
@@ -74,13 +99,18 @@ public class MucTieu_ACT extends Fragment {
                         break;
                 }
                 caloNeeded.setText(String.valueOf(caloNeededValue));
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putInt("CaloNeeded", caloNeededValue);
+                editor.apply();
+                editor.putString("SelectedGoal", selectedGoal);
+                editor.apply();
             } catch (NumberFormatException e) {
                 e.printStackTrace();
             } catch (Exception e) {
                 e.printStackTrace();
             }
         });
-        */
+
         return rootView;
     }
 }

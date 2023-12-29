@@ -29,6 +29,7 @@ public class MainScreen extends Fragment{
     private static final String PREF_KEY_POPUP_SHOWN = "popup_shown";
     private TextView dateTextView;
     private Calendar calendar;
+    private SharedPreferences sharedPreferences;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -93,10 +94,42 @@ public class MainScreen extends Fragment{
 
         dateTextView = rootView.findViewById(R.id.date_picker_actions);
         calendar = Calendar.getInstance();
-
         dateTextView.setOnClickListener(v -> showDatePickerDialog());
+        //updateDateInView();
 
-        updateDateInView();
+        TextView kcal = rootView.findViewById(R.id.kcal_khuyen_nghi);
+        TextView fat = rootView.findViewById(R.id.fat_khuyen_nghi);
+        TextView protein = rootView.findViewById(R.id.protein_khuyen_nghi);
+        sharedPreferences = getContext().getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
+        int userKcal = sharedPreferences.getInt("CaloNeeded",0 );
+        int age = Integer.parseInt(sharedPreferences.getString("Age", ""));
+        int weight = Integer.parseInt(sharedPreferences.getString("Weight", ""));
+        String gender = sharedPreferences.getString("Gender", "");
+        kcal.setText(String.valueOf(userKcal));
+        double fatCal = 0;
+        double proteinCal =0;
+        if(gender.equals("Nam")) {
+            if(age >= 0 && age <= 65) {
+                fatCal = Math.round(userKcal*0.3);
+                proteinCal = Math.round(weight*0.85);
+            }
+            else {
+                fatCal = Math.round(userKcal*0.25);
+                proteinCal = Math.round(weight*0.9);
+            }
+        } else {
+            if(age >= 0 && age <= 65) {
+                fatCal = Math.round(userKcal*0.25);
+                proteinCal = Math.round(weight*0.8);
+            }
+            else {
+                fatCal = Math.round(userKcal*0.2);
+                proteinCal = Math.round(weight*0.85);
+            }
+        }
+        fat.setText(String.valueOf((int) fatCal)+"g");
+        protein.setText(String.valueOf((int) proteinCal)+"g");
+
 
         return rootView;
     }
@@ -303,6 +336,7 @@ public class MainScreen extends Fragment{
                 });
         // Tạo và hiển thị AlertDialog
         AlertDialog alertDialog = builder.create();
+        alertDialog.setCancelable(false);
         alertDialog.show();
     }
 }
