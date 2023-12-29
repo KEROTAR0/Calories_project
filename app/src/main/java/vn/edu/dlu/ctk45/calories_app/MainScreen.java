@@ -130,6 +130,14 @@ public class MainScreen extends Fragment{
         fat.setText(String.valueOf((int) fatCal)+"g");
         protein.setText(String.valueOf((int) proteinCal)+"g");
 
+        TextView caloAct = rootView.findViewById(R.id.calo_act);
+        int caloWaste = sharedPreferences.getInt("CaloWaste",0 );
+        caloAct.setText(String.valueOf(caloWaste) + "Calo");
+
+        TextView goal = rootView.findViewById(R.id.goal);
+        String userGoal = sharedPreferences.getString("SelectedGoal", "");
+        goal.setText(userGoal);
+
 
         return rootView;
     }

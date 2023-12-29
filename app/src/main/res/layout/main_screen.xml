@@ -45,9 +45,8 @@
 
 
     <ScrollView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:scrollbars="vertical">
 
         <LinearLayout
@@ -59,46 +58,54 @@
             <LinearLayout
                 android:layout_width="370dp"
                 android:layout_height="200dp"
-                android:layout_marginTop="180dp"
                 android:background="@drawable/shape_radius_main_layout"
                 android:gravity="center_horizontal"
-                android:orientation="vertical"
-                android:weightSum="6">
+                android:orientation="vertical">
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:layout_weight="5"
-                    android:orientation="horizontal">
-
+                    android:orientation="vertical">
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
+                        android:gravity="center">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Mục tiêu hằng ngày"
+                            android:text="Mục tiêu của bạn: "
                             android:textSize="18sp"
-                            android:textStyle="bold"
-                            android:layout_margin="20dp"/>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="25sp"
-                        android:layout_marginLeft="40dp"
-                        android:layout_marginTop="20dp">
-
-                        <ImageView
-                            android:id="@+id/info_ic"
+                            android:textStyle="bold"/>
+                        <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/info_ic" />
+                            android:text="Mục tiêu"
+                            android:id="@+id/goal"
+                            android:textSize="18sp"
+                            android:textStyle="bold"/>
                     </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Hoạt động tiêu hao: "
+                            android:textSize="18sp"
+                            android:textStyle="bold"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="N Kcal"
+                            android:id="@+id/calo_act"
+                            android:textSize="18sp"
+                            android:textStyle="bold"/>
+                    </LinearLayout>
+
+
+
                 </LinearLayout>
 
                 <LinearLayout
