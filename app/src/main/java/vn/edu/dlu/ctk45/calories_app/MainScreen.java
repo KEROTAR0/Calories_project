@@ -102,12 +102,14 @@ public class MainScreen extends Fragment{
         TextView protein = rootView.findViewById(R.id.protein_khuyen_nghi);
         sharedPreferences = getContext().getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
         int userKcal = sharedPreferences.getInt("CaloNeeded",0 );
-        int age = Integer.parseInt(sharedPreferences.getString("Age", ""));
-        int weight = Integer.parseInt(sharedPreferences.getString("Weight", ""));
-        String gender = sharedPreferences.getString("Gender", "");
+        String userAge = sharedPreferences.getString("Age", "0");
+        int age = Integer.parseInt(userAge);
+        String userWeight = sharedPreferences.getString("Weight", "0");
+        int weight = Integer.parseInt(userWeight);
+        String gender = sharedPreferences.getString("Gender", "Nam");
         kcal.setText(String.valueOf(userKcal));
-        double fatCal = 0;
-        double proteinCal =0;
+        double fatCal = 0.0;
+        double proteinCal =0.0;
         if(gender.equals("Nam")) {
             if(age >= 0 && age <= 65) {
                 fatCal = Math.round(userKcal*0.3);
@@ -127,14 +129,18 @@ public class MainScreen extends Fragment{
                 proteinCal = Math.round(weight*0.85);
             }
         }
-        fat.setText(String.valueOf((int) fatCal)+"g");
-        protein.setText(String.valueOf((int) proteinCal)+"g");
+        String fatst = fatCal +"g";
+        fat.setText(fatst);
+        String proteinst = proteinCal +"g";
+        protein.setText(proteinst);
 
         TextView caloAct = rootView.findViewById(R.id.calo_act);
-        int caloWaste = sharedPreferences.getInt("CaloWaste",0 );
-        caloAct.setText(String.valueOf(caloWaste) + " Calo");
+        String caloWaste = sharedPreferences.getInt("CaloWaste",0 ) + " Calo";
+        caloAct.setText(caloWaste);
+
         TextView keepGoal = rootView.findViewById(R.id.keep_goal);
-        keepGoal.setText("Bạn cần nạp thêm" +String.valueOf(caloWaste) + " Calo để theo đúng mục tiêu");
+        String kgt = "Bạn cần nạp thêm " +String.valueOf(caloWaste) + " Calo để theo đúng mục tiêu";
+        keepGoal.setText(kgt);
 
         TextView goal = rootView.findViewById(R.id.goal);
         String userGoal = sharedPreferences.getString("SelectedGoal", "");
