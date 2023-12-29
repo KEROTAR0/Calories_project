@@ -132,7 +132,9 @@ public class MainScreen extends Fragment{
 
         TextView caloAct = rootView.findViewById(R.id.calo_act);
         int caloWaste = sharedPreferences.getInt("CaloWaste",0 );
-        caloAct.setText(String.valueOf(caloWaste) + "Calo");
+        caloAct.setText(String.valueOf(caloWaste) + " Calo");
+        TextView keepGoal = rootView.findViewById(R.id.keep_goal);
+        keepGoal.setText("Bạn cần nạp thêm" +String.valueOf(caloWaste) + " Calo để theo đúng mục tiêu");
 
         TextView goal = rootView.findViewById(R.id.goal);
         String userGoal = sharedPreferences.getString("SelectedGoal", "");

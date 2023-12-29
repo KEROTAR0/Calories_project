@@ -84,6 +84,7 @@
                             android:id="@+id/goal"
                             android:textSize="18sp"
                             android:textStyle="bold"/>
+
                     </LinearLayout>
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -103,7 +104,13 @@
                             android:textSize="18sp"
                             android:textStyle="bold"/>
                     </LinearLayout>
-
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/keep_goal"
+                        android:layout_gravity="center"
+                        android:textSize="14sp"
+                        android:textStyle="bold"/>
 
 
                 </LinearLayout>
