@@ -146,6 +146,9 @@ public class MainScreen extends Fragment{
         String userGoal = sharedPreferences.getString("SelectedGoal", "");
         goal.setText(userGoal);
 
+        if(age == 0){
+            showUserInputDialog();
+        }
 
         return rootView;
     }
