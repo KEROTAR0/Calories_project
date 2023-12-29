@@ -72,6 +72,9 @@ public class ThongTinCaNhan_ACT extends Fragment {
         String height = sharedPreferences.getString("Height", "0");
         String weight = sharedPreferences.getString("Weight", "0");
 
+        if (Integer.parseInt(age) == 0) {
+            showInputDialog();
+        }
 
         TextView textViewName = rootView.findViewById(R.id.user_name);
         TextView textViewAge = rootView.findViewById(R.id.user_age);
