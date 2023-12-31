@@ -22,19 +22,19 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
 
-public class FruitFragment extends Fragment {
+public class MeatFragment extends Fragment {
     ListView lv;
     ArrayList<FoodItem> foodItemList;
     FoodItemAdapter foodItemAdapter;
     String DB_NAME = "qlmonan.db";
     String DB_PATH = "/databases/";
     SQLiteDatabase database = null;
-    String imagePath = "fruit_img/";
+    String imagePath = "meat_img/";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.trai_cay_layout, container, false);
+        View rootView = inflater.inflate(R.layout.thit_layout, container, false);
         if (getActivity() != null && getActivity() instanceof AppCompatActivity) {
             ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
         }
@@ -49,7 +49,7 @@ public class FruitFragment extends Fragment {
 
         foodItemList = new ArrayList<>();
         database = requireContext().openOrCreateDatabase(DB_NAME, Context.MODE_PRIVATE, null);
-        Cursor cursor = database.query("FRUIT",null,null,null,null,null,null);
+        Cursor cursor = database.query("MEAT",null,null,null,null,null,null);
         foodItemList.clear();
         while (cursor.moveToNext()) {
             String foodName = cursor.getString(1);

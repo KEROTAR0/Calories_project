@@ -2,6 +2,7 @@ package vn.edu.dlu.ctk45.calories_app;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,20 +28,10 @@ public class CaiDat extends Fragment {
             ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
         }
 
-        /*
-        //đang lỗi
         dayNightSwitch = rootView.findViewById(R.id.dayNightSwitch);
-
         dayNightSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            saveNightModeState(isChecked);
-            applyNightMode(isChecked);
+            updateAppTheme(isChecked);
         });
-
-        boolean isNightMode = getNightModeState();
-        dayNightSwitch.setChecked(isNightMode);
-        applyNightMode(isNightMode);
-
-        */
         ImageButton backButton = rootView.findViewById(R.id.back);
         backButton.setOnClickListener(v -> {
             if (getActivity() != null) {
@@ -51,31 +42,15 @@ public class CaiDat extends Fragment {
         return rootView;
     }
 
-    private void saveNightModeState(boolean isNightMode) {
-        if (getActivity() != null) {
-            SharedPreferences sharedPreferences = getActivity().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putBoolean("isNightMode", isNightMode);
-            editor.apply();
-        }
-    }
 
-    private boolean getNightModeState() {
-        if (getActivity() != null) {
-            SharedPreferences sharedPreferences = getActivity().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
-            return sharedPreferences.getBoolean("isNightMode", false);
-        }
-        return false;
-    }
-
-    private void applyNightMode(boolean isNightMode) {
-        if (getActivity() != null) {
-            if (isNightMode) {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-            } else {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-            }
-            getActivity().recreate();
+    private void updateAppTheme(boolean isNightMode) {
+        int currentNightMode = getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
+        if (isNightMode && currentNightMode != Configuration.UI_MODE_NIGHT_YES) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+            getActivity().recreate(); // Tái khởi động lại activity để áp dụng chế độ tối
+        } else if (!isNightMode && currentNightMode != Configuration.UI_MODE_NIGHT_NO) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+            getActivity().recreate(); // Tái khởi động lại activity để áp dụng chế độ sáng
         }
     }
 }

@@ -30,7 +30,7 @@ public class LoaiThucPham extends Fragment {
         listView.setDivider(divider);
         listView.setDividerHeight(getResources().getDimensionPixelSize(R.dimen.divider_height));
 
-        String[] fcName = new String[]{"Trái cây", "Các loại thịt", "Ngũ cốc", "Hải sản", "Rau củ quả"};
+        String[] fcName = new String[]{"Trái cây", "Các loại thịt", "Ngũ cốc/hạt", "Hải sản", "Rau củ quả"};
         String[] fcInfo = new String[]{
                 "Trái cây là một trong những thực phẩm giàu dinh dưỡng và tốt cho sức khỏe phổ biến nhất thế giới.",
                 "Thịt là một nguồn cung cấp thực phẩm cực tốt và giàu dinh dưỡng. Trong khi thịt bò chứa nhiều sắt thì thịt ức gà lại rất giàu protein.",
@@ -58,10 +58,18 @@ public class LoaiThucPham extends Fragment {
                     case 0: // Trái cây
                         fragmentToShow = new FruitFragment();
                         break;
-                    //case 1: // Các loại thịt
-                    //    fragmentToShow = new CacLoaiThit(); // Tạo fragment tương ứng
-                    //    break;
-                    // Thêm các case khác tương ứng
+                    case 1: // Thịt
+                        fragmentToShow = new MeatFragment();
+                        break;
+                    case 2: // ngu coc
+                        fragmentToShow = new RiceFragment();
+                        break;
+                    case 3: // hai san
+                        fragmentToShow = new SeaFoodFragment();
+                        break;
+                    case 4: // rau cu
+                        fragmentToShow = new VegetableFragment();
+                        break;
                     default:
                         fragmentToShow = null; // Fragment mặc định nếu không có trường hợp nào khớp
                         break;
