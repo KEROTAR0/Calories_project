@@ -139,7 +139,7 @@ public class MainScreen extends Fragment{
         caloAct.setText(caloWaste);
 
         TextView keepGoal = rootView.findViewById(R.id.keep_goal);
-        String kgt = "Bạn cần nạp thêm " +String.valueOf(caloWaste) + " Calo để theo đúng mục tiêu";
+        String kgt = "Bạn cần nạp thêm " +String.valueOf(caloWaste) + " để theo đúng mục tiêu";
         keepGoal.setText(kgt);
 
         TextView goal = rootView.findViewById(R.id.goal);
@@ -149,7 +149,9 @@ public class MainScreen extends Fragment{
         if(age == 0){
             showUserInputDialog();
         }
-
+        if (age >0 && userGoal.isEmpty()) {
+            showGoalInputDialog();
+        }
         return rootView;
     }
 
@@ -354,6 +356,22 @@ public class MainScreen extends Fragment{
                     }
                 });
         // Tạo và hiển thị AlertDialog
+        AlertDialog alertDialog = builder.create();
+        alertDialog.setCancelable(false);
+        alertDialog.show();
+    }
+    private void showGoalInputDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
+        builder.setMessage("Vui lòng đặt mục tiêu của bạn ở \"Mục tiêu\" ")
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                        transaction.replace(R.id.ln_main, new MucTieu_ACT());
+                        transaction.addToBackStack(null);
+                        transaction.commit();
+                        dialog.dismiss();
+                    }
+                });
         AlertDialog alertDialog = builder.create();
         alertDialog.setCancelable(false);
         alertDialog.show();

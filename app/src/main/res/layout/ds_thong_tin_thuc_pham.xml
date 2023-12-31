@@ -4,7 +4,7 @@
     android:orientation="horizontal"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_margin="20dp"
-    android:background="@drawable/button_layout">
+    android:background="@drawable/food_category">
     <ImageView
         android:id="@+id/food_image"
         android:layout_width="120dp"

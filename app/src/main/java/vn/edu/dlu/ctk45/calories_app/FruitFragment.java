@@ -25,13 +25,13 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 
 public class FruitFragment extends Fragment {
-    private SQLiteDatabase db;
     ListView lv;
     ArrayList<FoodItem> foodItemList;
     FoodItemAdapter foodItemAdapter;
     String DB_NAME = "qlmonan.db";
     String DB_PATH = "/databases/";
     SQLiteDatabase database = null;
+    String imagePath = "fruit_img/";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -50,12 +50,6 @@ public class FruitFragment extends Fragment {
         themDatabase();
 
         foodItemList = new ArrayList<>();
-        showAC();
-
-        return rootView;
-    }
-
-    private void showAC() {
         database = requireContext().openOrCreateDatabase(DB_NAME, Context.MODE_PRIVATE, null);
         Cursor cursor = database.query("FRUIT",null,null,null,null,null,null);
         foodItemList.clear();
@@ -69,7 +63,7 @@ public class FruitFragment extends Fragment {
             String imageResource = imageFileName + ".png";
             try {
                 AssetManager assetManager = requireContext().getAssets();
-                InputStream inputStream = assetManager.open("fruit/" + imageFileName + ".png");
+                InputStream inputStream = assetManager.open("fruit_img/" + imageResource);
 
                 // Tạo đối tượng FoodItem và thêm vào danh sách
                 FoodItem foodItem = new FoodItem(foodName, foodCalo, foodProtein, foodFat, foodDetail, imageResource);
@@ -81,9 +75,11 @@ public class FruitFragment extends Fragment {
             }
         }
         cursor.close();
-        foodItemAdapter = new FoodItemAdapter(requireContext(), R.layout.ds_thong_tin_thuc_pham, foodItemList);
+        foodItemAdapter = new FoodItemAdapter(requireContext(), R.layout.ds_thong_tin_thuc_pham, foodItemList, imagePath);
         lv.setAdapter(foodItemAdapter);
+        return rootView;
     }
+
     private void themDatabase() {
         File dbFile = getContext().getDatabasePath(DB_NAME);
 
@@ -116,62 +112,10 @@ public class FruitFragment extends Fragment {
 
             myInput.close();
             myOutPut.close();
-
         } catch (Exception e) {
             e.printStackTrace();
-            Log.e("Lỗi sao chép", e.toString());
+            Log.e("Lỗi sao chép dữ liệu", e.toString());
         }
     }
-
-
-/*
-    private void loadDatabaseData() {
-        foodItemList = new ArrayList<>();
-
-        // Mở hoặc tạo cơ sở dữ liệu
-        database = SQLiteDatabase.openDatabase(((MainActivity) getActivity()).getDatabasePath(), null, SQLiteDatabase.OPEN_READONLY);
-
-        // Truy vấn dữ liệu từ bảng db_mon_fruit
-        Cursor cursor = database.rawQuery("SELECT * FROM db_mon_fruit", null);
-
-        if (cursor != null && cursor.moveToFirst()) {
-            do {
-
-                // Đọc thông tin từ Cursor
-                String foodName = cursor.getString(1);
-                String foodCalo = cursor.getString(2);
-                String foodProtein = cursor.getString(3);
-                String foodFat = cursor.getString(4);
-                String foodDetail = cursor.getString(5);
-                String imageFileName = cursor.getString(6); // Assume file name without ".png"
-
-                // Thêm đuôi ".png" cho tên file ảnh
-                String imageResource = imageFileName + ".png";
-
-                // Tạo đối tượng FoodItem và thêm vào danh sách
-                try {
-                    AssetManager assetManager = requireContext().getAssets();
-                    InputStream inputStream = assetManager.open("fruit/" + imageFileName + ".png");
-
-                    // Tạo đối tượng FoodItem và thêm vào danh sách
-                    FoodItem foodItem = new FoodItem(foodName, foodCalo, foodProtein, foodFat, foodDetail, imageResource);
-                    foodItemList.add(foodItem);
-
-                    inputStream.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            } while (cursor.moveToNext());
-
-            cursor.close();
-        }
-
-        // Tạo adapter và gán cho ListView
-        foodItemAdapter = new FoodItemAdapter(requireContext(), R.layout.ds_thong_tin_thuc_pham, foodItemList);
-        lv.setAdapter(foodItemAdapter);
-    }
-
- */
-
 
 }

@@ -3,7 +3,8 @@
     android:layout_height="100dp"
     android:orientation="horizontal"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_margin="20dp">
+    android:layout_margin="20dp"
+    android:background="@drawable/button_layout">
     <ImageView
         android:layout_width="100dp"
         android:layout_height="100dp"
