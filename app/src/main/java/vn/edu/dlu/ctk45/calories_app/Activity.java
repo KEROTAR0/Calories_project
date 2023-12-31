@@ -11,8 +11,6 @@ public class Activity {
         this.image = image;
     }
     public int calculateCalories(int amount) {
-        // Thay đổi công thức tính calo tùy thuộc vào logic của ứng dụng của bạn.
-        // Ví dụ: Giả sử calo được tính dựa trên số lần hoạt động (amount) và thông tin hoạt động (thong_tin_hd).
         return amount * thong_tin_hd;
     }
 }

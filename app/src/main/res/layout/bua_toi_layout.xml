@@ -36,8 +36,68 @@
         <ListView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="10"
+            android:layout_weight="8.5"
             android:id="@+id/lv_food"
             android:layout_margin="15dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.5"
+            android:background="@color/gray"
+            android:orientation="vertical">
+
+            <Button
+                android:layout_width="200dp"
+                android:layout_marginTop="5dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/pos_button_layout"
+                android:layout_gravity="center"
+                android:text="Xác nhận"
+                android:textSize="20dp"
+                android:id="@+id/submit_button"
+                android:textStyle="bold"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="6">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20dp"
+                    android:layout_weight="1"
+                    android:text="Calo:"/>
+                <TextView
+                    android:layout_width="45dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="20dp"
+                    android:layout_weight="1"
+                    android:id="@+id/food_calo"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20dp"
+                    android:layout_weight="1"
+                    android:text="Protein:"/>
+                <TextView
+                    android:layout_width="25dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="20dp"
+                    android:layout_weight="1"
+                    android:id="@+id/food_protein"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20dp"
+                    android:layout_weight="1"
+                    android:text=" Fat:"/>
+                <TextView
+                    android:layout_width="25dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="20dp"
+                    android:layout_weight="1"
+                    android:id="@+id/food_fat"/>
+            </LinearLayout>
+        </LinearLayout>
     </LinearLayout>
 </LinearLayout>

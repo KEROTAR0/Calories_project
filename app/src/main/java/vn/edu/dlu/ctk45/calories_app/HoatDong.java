@@ -59,8 +59,6 @@ public class HoatDong extends Fragment {
         ActivitiesList adapter = new ActivitiesList(act);
         listView.setAdapter(adapter);
 
-
-
         Button submitButton = rootView.findViewById(R.id.submit_button);
         submitButton.setOnClickListener(v -> {
             int totalCalories = 0;

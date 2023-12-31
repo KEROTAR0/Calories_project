@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.AssetManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,6 +14,7 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import java.io.File;
@@ -29,7 +31,7 @@ public class MeatFragment extends Fragment {
     String DB_NAME = "qlmonan.db";
     String DB_PATH = "/databases/";
     SQLiteDatabase database = null;
-    String imagePath = "meat_img/";
+    String imagePath = "monan_png/";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -45,6 +47,11 @@ public class MeatFragment extends Fragment {
                 getActivity().onBackPressed();
             }
         });
+
+        Drawable divider = ContextCompat.getDrawable(requireContext(), R.drawable.divider);
+        lv.setDivider(divider);
+        lv.setDividerHeight(getResources().getDimensionPixelSize(R.dimen.divider_height));
+
         themDatabase();
 
         foodItemList = new ArrayList<>();

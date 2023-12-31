@@ -1,50 +1,79 @@
 <LinearLayout
     android:layout_width="match_parent"
-    android:layout_height="150dp"
+    android:layout_height="160dp"
     android:orientation="horizontal"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_margin="20dp"
-    android:background="@drawable/mon_an">
+    android:background="@drawable/food_category">
     <ImageView
-        android:id="@+id/food_img"
-        android:layout_width="130dp"
-        android:layout_height="130dp"
+        android:id="@+id/f_image"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
         android:layout_margin="10dp"/>
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:orientation="vertical"
-        android:layout_marginLeft="10dp"
         android:layout_marginTop="5dp"
-        android:weightSum="4"
+        android:weightSum="5"
         android:layout_height="match_parent">
         <TextView
-            android:id="@+id/food_name"
+            android:id="@+id/f_name"
             android:layout_width="match_parent"
             android:layout_weight="1"
             android:textStyle="bold"
-            android:textSize="28dp"
+            android:textSize="20dp"
             android:textColor="@color/orange"
             android:layout_height="0dp"/>
         <TextView
-            android:id="@+id/food_info"
+            android:id="@+id/f_info"
             android:layout_width="match_parent"
             android:layout_weight="2"
-            android:textSize="24dp"
+            android:textSize="14dp"
             android:layout_height="0dp"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1">
+            android:layout_weight="0.6"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Calo:"/>
+            <TextView
+                android:layout_width="55dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/f_calo"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Protein:"/>
+            <TextView
+                android:layout_width="25dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/f_protein"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" Fat:"/>
+            <TextView
+                android:layout_width="25dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/f_fat"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.4">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:text="Số lượng: "
-                android:textSize="20dp"
+                android:textSize="16dp"
                 android:layout_marginTop="10dp"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:textSize="20dp"
+                android:textSize="16dp"
                 android:text="0"
                 android:id="@+id/food_ammount"
                 android:layout_marginTop="10dp"
@@ -55,14 +84,29 @@
                 android:background="@drawable/neg_button_layout"
                 android:text="-"
                 android:textSize="20dp"
-                android:id="@+id/decrease"/>
+                android:id="@+id/decrease_btn"/>
             <Button
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/pos_button_layout"
                 android:text="+"
                 android:textSize="20dp"
-                android:id="@+id/increase"/>
+                android:id="@+id/increase_btn"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="0dp"
+                android:id="@+id/fCalo_amount"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="0dp"
+                android:id="@+id/fFat_amount"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="0dp"
+                android:id="@+id/fProtein_amount"/>
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

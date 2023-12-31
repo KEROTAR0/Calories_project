@@ -14,8 +14,12 @@ import androidx.fragment.app.FragmentTransaction;
 import android.os.Handler;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
@@ -95,7 +99,7 @@ public class MainScreen extends Fragment{
         dateTextView = rootView.findViewById(R.id.date_picker_actions);
         calendar = Calendar.getInstance();
         dateTextView.setOnClickListener(v -> showDatePickerDialog());
-        //updateDateInView();
+        updateDateInView();
 
         TextView kcal = rootView.findViewById(R.id.kcal_khuyen_nghi);
         TextView fat = rootView.findViewById(R.id.fat_khuyen_nghi);
@@ -138,17 +142,69 @@ public class MainScreen extends Fragment{
         String caloWaste = sharedPreferences.getInt("CaloWaste",0 ) + " Calo";
         caloAct.setText(caloWaste);
 
+        int waterNeed = 0;
+        TextView waterTextView = rootView.findViewById(R.id.water);
         TextView keepGoal = rootView.findViewById(R.id.keep_goal);
         String kgt = "Bạn cần nạp thêm " +String.valueOf(caloWaste) + " để theo đúng mục tiêu";
         if (sharedPreferences.getInt("CaloWaste",0 ) == 0) {
             keepGoal.setText("Bạn có thể thêm hoạt động ở phía dưới");
+            waterNeed = Integer.parseInt(sharedPreferences.getString("Weight", "0"))*30;
         } else {
             keepGoal.setText(kgt);
+            waterNeed = Integer.parseInt(sharedPreferences.getString("Weight", "0"))*30 + sharedPreferences.getInt("CaloWaste",0 )*2;
         }
 
         TextView goal = rootView.findViewById(R.id.goal);
         String userGoal = sharedPreferences.getString("SelectedGoal", "");
         goal.setText(userGoal);
+
+        waterTextView.setText("Bạn cần uống " + waterNeed + "ml mỗi ngày");
+
+        int savedCalories = sharedPreferences.getInt("totalCaloriesMorning", 0) + sharedPreferences.getInt("totalCaloriesLunch", 0) + sharedPreferences.getInt("totalCaloriesDinner", 0);
+        float savedFats = sharedPreferences.getFloat("totalFatsMorning", 0.0f) + sharedPreferences.getFloat("totalFatsLunch", 0.0f) + sharedPreferences.getFloat("totalFatsDinner", 0.0f);
+        float savedProteins = sharedPreferences.getFloat("totalProteinsMorning", 0.0f) + sharedPreferences.getFloat("totalProteinsLunch", 0.0f) + sharedPreferences.getFloat("totalProteinsDinner", 0.0f);
+        TextView caloHT = rootView.findViewById(R.id.kcal_hien_tai);
+        TextView fatHT = rootView.findViewById(R.id.fat_hien_tai);
+        TextView proteinHT = rootView.findViewById(R.id.protein_hien_tai);
+        if (savedCalories != 0 && savedFats != 0.0f && savedProteins != 0.0f) {
+            try {
+                caloHT.setText(String.valueOf(savedCalories));
+                fatHT.setText(String.valueOf(Math.round(savedFats * 10.0) / 10.0));
+                proteinHT.setText(String.valueOf(Math.round(savedProteins * 10.0) / 10.0));
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
+            }
+        }
+
+        Button defaultBtn = rootView.findViewById(R.id.default_btn);
+        defaultBtn.setOnClickListener(v -> {
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+
+            editor.putInt("CaloWaste", 0);
+
+            editor.putInt("totalCaloriesMorning", 0);
+            editor.putInt("totalCaloriesLunch", 0);
+            editor.putInt("totalCaloriesDinner", 0);
+
+            editor.putFloat("totalFatsMorning", 0.0f);
+            editor.putFloat("totalFatsLunch", 0.0f);
+            editor.putFloat("totalFatsDinner", 0.0f);
+
+            editor.putFloat("totalProteinsMorning", 0.0f);
+            editor.putFloat("totalProteinsLunch", 0.0f);
+            editor.putFloat("totalProteinsDinner", 0.0f);
+
+            editor.apply();
+
+            caloHT.setText("0");
+            fatHT.setText("0");
+            proteinHT.setText("0");
+            caloAct.setText("N Kcal");
+            int wn = Integer.parseInt(sharedPreferences.getString("Weight", "0"))*30;
+            keepGoal.setText("Bạn có thể thêm hoạt động ở phía dưới");
+            waterTextView.setText("Bạn cần uống " + wn + "ml mỗi ngày");
+
+        });
 
         if(age == 0){
             showUserInputDialog();
@@ -181,6 +237,8 @@ public class MainScreen extends Fragment{
     public void showSideMenu(View view) {
         View sideMenuView = getLayoutInflater().inflate(R.layout.side_menu_layout, null);
         PopupWindow popupWindow = new PopupWindow(sideMenuView, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT, true);
+        Animation slideInAnimation = AnimationUtils.loadAnimation(requireContext(), R.anim.slide_in_left);
+        sideMenuView.startAnimation(slideInAnimation);
         popupWindow.showAtLocation(view, Gravity.START, 0, 0);
 
         TextView menuItem1 = sideMenuView.findViewById(R.id.menu_1);

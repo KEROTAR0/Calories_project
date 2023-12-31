@@ -22,4 +22,13 @@ public class FoodItem {
     public String getInfoFoodFat(){return foodFat;}
     public String getInfoFoodDetail(){return foodDetail;}
     public String getInfoFoodImageResource(){return foodImageResource;}
+    public int calculateCalo(int amount) {
+        return amount * Integer.valueOf(foodCalo);
+    }
+    public double calculateFat(int amount) {
+        return Math.round(amount * Double.parseDouble(foodFat) * 10.0) / 10.0;
+    }
+    public double calculateProtein(int amount) {
+        return Math.round(amount * Double.parseDouble(foodProtein) * 10.0) / 10.0;
+    }
 }

@@ -25,7 +25,7 @@ public class FoodItemAdapter extends ArrayAdapter<FoodItem> {
         this.context = context;
         this.resourceId = resourceId;
         this.foodItemList = foodItemList;
-        this.imagePath = imagePath; // Gán đường dẫn mới
+        this.imagePath = imagePath;
     }
 
     @Override
@@ -34,10 +34,8 @@ public class FoodItemAdapter extends ArrayAdapter<FoodItem> {
             convertView = LayoutInflater.from(context).inflate(resourceId, parent, false);
         }
 
-        // Lấy đối tượng FoodItem tại vị trí position
         FoodItem currentItem = foodItemList.get(position);
 
-        // Ánh xạ các thành phần trong layout ds_thong_tin_thuc_pham.xml
         ImageView foodImageView = convertView.findViewById(R.id.food_image);
         TextView foodNameTextView = convertView.findViewById(R.id.food_name);
         TextView foodCaloTextView = convertView.findViewById(R.id.food_calo);

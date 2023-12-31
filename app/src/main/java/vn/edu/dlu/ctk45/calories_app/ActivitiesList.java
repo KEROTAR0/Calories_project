@@ -43,6 +43,7 @@ public class ActivitiesList extends BaseAdapter {
         TextView txtAmount = view.findViewById(R.id.time_ammount);
         Button increaseBtn = view.findViewById(R.id.increase);
         Button decreaseBtn = view.findViewById(R.id.decrease);
+        TextView caloWaste = view.findViewById(R.id.calo_waste);
 
         final int[] amount = {0};
         txtAmount.setText(String.valueOf(amount[0]));
@@ -53,7 +54,6 @@ public class ActivitiesList extends BaseAdapter {
 
             // Tính calo và cập nhật vào TextView calo_waste
             int calories = list.get(position).calculateCalories(amount[0]);
-            TextView caloWaste = view.findViewById(R.id.calo_waste);
             caloWaste.setText(String.valueOf(calories));
 
         });
@@ -65,7 +65,6 @@ public class ActivitiesList extends BaseAdapter {
 
                 // Tính calo và cập nhật vào TextView calo_waste
                 int calories = list.get(position).calculateCalories(amount[0]);
-                TextView caloWaste = view.findViewById(R.id.calo_waste);
                 caloWaste.setText(String.valueOf(calories));
 
             }

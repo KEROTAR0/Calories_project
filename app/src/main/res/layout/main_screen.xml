@@ -27,7 +27,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="@string/text_main"
+                android:text="Ngày: "
                 android:textSize="26sp"
                 android:layout_marginLeft="20dp"/>
             <TextView
@@ -50,6 +50,7 @@
         android:scrollbars="vertical">
 
         <LinearLayout
+            android:layout_marginTop="80dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -57,7 +58,7 @@
 
             <LinearLayout
                 android:layout_width="370dp"
-                android:layout_height="200dp"
+                android:layout_height="400dp"
                 android:background="@drawable/shape_radius_main_layout"
                 android:gravity="center_horizontal"
                 android:orientation="vertical">
@@ -111,7 +112,24 @@
                         android:layout_gravity="center"
                         android:textSize="14sp"
                         android:textStyle="bold"/>
-
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Lượng nước: "
+                            android:textSize="18sp"
+                            android:textStyle="bold"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="N ml"
+                            android:id="@+id/water"
+                            android:textSize="18sp"
+                            android:textStyle="bold"/>
+                    </LinearLayout>
 
                 </LinearLayout>
 
@@ -143,7 +161,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="kcal"
+                            android:text="calo"
                             android:textSize="20sp" />
                     </LinearLayout>
 
@@ -204,7 +222,102 @@
                     </LinearLayout>
 
                 </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
 
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="17sp"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:id="@+id/kcal_hien_tai"
+                            android:textSize="20sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="calo"
+                            android:textSize="20sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="17sp"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Hiện tại"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:id="@+id/fat_hien_tai"
+                            android:textSize="20sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="fat"
+                            android:textSize="20sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="17sp"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:id="@+id/protein_hien_tai"
+                            android:textSize="20sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="protein"
+                            android:textSize="20sp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+                <Button
+                    android:layout_width="200dp"
+                    android:layout_height="50dp"
+                    android:text="Đặt về mặt định"
+                    android:textStyle="bold"
+                    android:background="@drawable/button_layout"
+                    android:id="@+id/default_btn"/>
 
             </LinearLayout>
 
@@ -374,6 +487,7 @@
                 android:layout_height="95dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="28dp"
+                android:layout_marginBottom="30dp"
                 android:background="@drawable/shape_radius_main_layout"
                 android:orientation="horizontal"
                 android:weightSum="10">
