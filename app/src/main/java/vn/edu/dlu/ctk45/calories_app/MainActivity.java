@@ -1,10 +1,13 @@
 package vn.edu.dlu.ctk45.calories_app;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -29,9 +32,25 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         showFrg(new LoadScreen_ACT());
 
-        //FoodDatabaseHelper foodDatabaseHelper = new FoodDatabaseHelper(this);
-        //foodDatabaseHelper.open();
+        SharedPreferences sharedPreferences;
+        sharedPreferences = getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
 
+        // Kiểm tra xem nếu không có giá trị nào được lưu trước đó, đặt giá trị mặc định là "sáng"
+        if (!sharedPreferences.contains("night_mode")) {
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putBoolean("night_mode", false); // Sáng: false, Tối: true
+            editor.apply();
+        }
+
+        // Load giá trị từ SharedPreferences để xác định chủ đề (theme) mặc định của ứng dụng
+        boolean isNightMode = sharedPreferences.getBoolean("night_mode", false);
+        if (isNightMode) {
+            // Thiết lập chủ đề tối
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        } else {
+            // Thiết lập chủ đề sáng
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        }
 
         if (getSupportActionBar() != null) {
             getSupportActionBar().hide();

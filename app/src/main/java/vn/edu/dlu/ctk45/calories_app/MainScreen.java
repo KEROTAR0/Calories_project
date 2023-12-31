@@ -140,7 +140,11 @@ public class MainScreen extends Fragment{
 
         TextView keepGoal = rootView.findViewById(R.id.keep_goal);
         String kgt = "Bạn cần nạp thêm " +String.valueOf(caloWaste) + " để theo đúng mục tiêu";
-        keepGoal.setText(kgt);
+        if (sharedPreferences.getInt("CaloWaste",0 ) == 0) {
+            keepGoal.setText("Bạn có thể thêm hoạt động ở phía dưới");
+        } else {
+            keepGoal.setText(kgt);
+        }
 
         TextView goal = rootView.findViewById(R.id.goal);
         String userGoal = sharedPreferences.getString("SelectedGoal", "");
@@ -149,7 +153,7 @@ public class MainScreen extends Fragment{
         if(age == 0){
             showUserInputDialog();
         }
-        if (age >0 && userGoal.isEmpty()) {
+        if(age >0 && userGoal.isEmpty()){
             showGoalInputDialog();
         }
         return rootView;
@@ -362,7 +366,7 @@ public class MainScreen extends Fragment{
     }
     private void showGoalInputDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
-        builder.setMessage("Vui lòng đặt mục tiêu của bạn ở \"Mục tiêu\" ")
+        builder.setMessage("Vui lòng đặt mục tiêu của ban ở \"Mục tiêu\" ")
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         FragmentTransaction transaction = getFragmentManager().beginTransaction();

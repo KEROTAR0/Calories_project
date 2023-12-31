@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 
 public class LoadScreen_ACT extends Fragment {
 
@@ -27,6 +28,9 @@ public class LoadScreen_ACT extends Fragment {
     }
 
     private void gotoMainScreen() {
-        ((MainActivity) getActivity()).gotoMainScreen();
+        FragmentActivity activity = getActivity();
+        if (activity instanceof MainActivity) {
+            ((MainActivity) activity).gotoMainScreen();
+        }
     }
 }
