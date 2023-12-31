@@ -47,4 +47,10 @@
             android:checked="false"
             android:layout_margin="15dp" />
     </LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ứng dụng sẽ tự động khởi chạy lại để áp dụng"
+        android:textSize="20dp"
+        android:layout_margin="20dp"/>
 </LinearLayout>

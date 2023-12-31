@@ -19,6 +19,7 @@ public class CaiDat extends Fragment {
 
     private Switch dayNightSwitch;
 
+    SharedPreferences sharedPreferences;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -27,9 +28,13 @@ public class CaiDat extends Fragment {
         if (getActivity() != null && getActivity() instanceof AppCompatActivity) {
             ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
         }
+        sharedPreferences = getContext().getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
 
         dayNightSwitch = rootView.findViewById(R.id.dayNightSwitch);
         dayNightSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putBoolean("night_mode", isChecked);
+            editor.apply();
             updateAppTheme(isChecked);
         });
         ImageButton backButton = rootView.findViewById(R.id.back);
@@ -52,6 +57,14 @@ public class CaiDat extends Fragment {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
             getActivity().recreate(); // Tái khởi động lại activity để áp dụng chế độ sáng
         }
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        // Load trạng thái từ SharedPreferences khi Fragment resume
+        boolean isNightMode = sharedPreferences.getBoolean("night_mode", false);
+        dayNightSwitch.setChecked(isNightMode);
     }
 }
 
