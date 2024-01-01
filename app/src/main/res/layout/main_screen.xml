@@ -46,7 +46,7 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:scrollbars="vertical">
 
         <LinearLayout
@@ -337,7 +337,7 @@
                     android:src="@drawable/breakfast_ic" />
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginLeft="15sp"
@@ -351,11 +351,48 @@
                         android:textSize="21sp"
                         android:textStyle="bold" />
 
-                    <TextView
-                        android:layout_width="match_parent"
+                    <LinearLayout
+                        android:layout_width="200dp"
                         android:layout_height="wrap_content"
-                        android:text="Nên ăn đầy đủ để cung cấp năng lượng cho cơ thể sau khi không ăn qua đêm"
-                        android:textSize="14sp" />
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Calo: "/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/calobk"
+                            android:text="0"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Fat: "/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/fatbk"
+                            android:text="0g"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Protein: "/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/proteinbk"
+                            android:text="0g"/>
+                    </LinearLayout>
                 </LinearLayout>
 
                 <LinearLayout
@@ -367,7 +404,6 @@
                         android:id="@+id/add_breakfast"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
                         android:layout_marginTop="30dp"
                         android:src="@drawable/add_ic"
                         android:background="@color/aqua"/>
@@ -391,7 +427,7 @@
                     android:src="@drawable/lunch_ic" />
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginLeft="15sp"
@@ -405,11 +441,48 @@
                         android:textSize="21sp"
                         android:textStyle="bold" />
 
-                    <TextView
-                        android:layout_width="match_parent"
+                    <LinearLayout
+                        android:layout_width="200dp"
                         android:layout_height="wrap_content"
-                        android:text="Lượng thức ăn nên vừa phải, cung cấp đủ năng lượng cho buổi chiều mà không gây cảm giác buồn ngủ."
-                        android:textSize="14sp" />
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Calo: "/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/calolunch"
+                            android:text="0"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Fat: "/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/fatlunch"
+                            android:text="0g"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Protein: "/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/proteinlunch"
+                            android:text="0g"/>
+                    </LinearLayout>
                 </LinearLayout>
 
                 <LinearLayout
@@ -421,7 +494,6 @@
                         android:id="@+id/add_lunch"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
                         android:layout_marginTop="30dp"
                         android:src="@drawable/add_ic"
                         android:background="@color/aqua"/>
@@ -445,7 +517,7 @@
                     android:src="@drawable/dinner_ic" />
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginLeft="15sp"
@@ -459,11 +531,48 @@
                         android:textSize="21sp"
                         android:textStyle="bold" />
 
-                    <TextView
-                        android:layout_width="match_parent"
+                    <LinearLayout
+                        android:layout_width="200dp"
                         android:layout_height="wrap_content"
-                        android:text="Tập trung vào thức ăn dễ tiêu hóa và ít chất béo để không gây khó chịu khi ngủ"
-                        android:textSize="14sp" />
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Calo: "/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/calodin"
+                            android:text="0"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Fat: "/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/fatdin"
+                            android:text="0g"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Protein: "/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/proteindin"
+                            android:text="0g"/>
+                    </LinearLayout>
                 </LinearLayout>
 
                 <LinearLayout
@@ -474,7 +583,6 @@
                         android:id="@+id/add_dinner"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="30dp"
                         android:layout_marginTop="30dp"
                         android:src="@drawable/add_ic"
                         android:background="@color/aqua"/>
@@ -500,11 +608,11 @@
                     android:src="@drawable/exercise_ic" />
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginLeft="15sp"
-                    android:layout_weight="7"
+                    android:layout_weight="6"
                     android:orientation="vertical">
 
                     <TextView

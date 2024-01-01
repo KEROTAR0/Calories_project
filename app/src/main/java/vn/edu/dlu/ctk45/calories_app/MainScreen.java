@@ -116,20 +116,20 @@ public class MainScreen extends Fragment{
         double proteinCal =0.0;
         if(gender.equals("Nam")) {
             if(age >= 0 && age <= 65) {
-                fatCal = Math.round(userKcal*0.3);
-                proteinCal = Math.round(weight*0.85);
+                fatCal = Math.round(userKcal*0.03);
+                proteinCal = Math.round(weight*0.95);
             }
             else {
-                fatCal = Math.round(userKcal*0.25);
+                fatCal = Math.round(userKcal*0.025);
                 proteinCal = Math.round(weight*0.9);
             }
         } else {
             if(age >= 0 && age <= 65) {
-                fatCal = Math.round(userKcal*0.25);
-                proteinCal = Math.round(weight*0.8);
+                fatCal = Math.round(userKcal*0.025);
+                proteinCal = Math.round(weight*0.9);
             }
             else {
-                fatCal = Math.round(userKcal*0.2);
+                fatCal = Math.round(userKcal*0.02);
                 proteinCal = Math.round(weight*0.85);
             }
         }
@@ -160,9 +160,29 @@ public class MainScreen extends Fragment{
 
         waterTextView.setText("Bạn cần uống " + waterNeed + "ml mỗi ngày");
 
-        int savedCalories = sharedPreferences.getInt("totalCaloriesMorning", 0) + sharedPreferences.getInt("totalCaloriesLunch", 0) + sharedPreferences.getInt("totalCaloriesDinner", 0);
-        float savedFats = sharedPreferences.getFloat("totalFatsMorning", 0.0f) + sharedPreferences.getFloat("totalFatsLunch", 0.0f) + sharedPreferences.getFloat("totalFatsDinner", 0.0f);
-        float savedProteins = sharedPreferences.getFloat("totalProteinsMorning", 0.0f) + sharedPreferences.getFloat("totalProteinsLunch", 0.0f) + sharedPreferences.getFloat("totalProteinsDinner", 0.0f);
+        int calobk = sharedPreferences.getInt("totalCaloriesMorning", 0);
+        int calolunch = sharedPreferences.getInt("totalCaloriesLunch", 0);
+        int calodin = sharedPreferences.getInt("totalCaloriesDinner", 0);
+        float fatbk = sharedPreferences.getFloat("totalFatsMorning", 0.0f);
+        float fatlunch = sharedPreferences.getFloat("totalFatsLunch", 0.0f);
+        float fatdin = sharedPreferences.getFloat("totalFatsDinner", 0.0f);
+        float proteinbk = sharedPreferences.getFloat("totalProteinsMorning", 0.0f);
+        float proteinlunch = sharedPreferences.getFloat("totalProteinsLunch", 0.0f);
+        float proteindin = sharedPreferences.getFloat("totalProteinsDinner", 0.0f);
+        int savedCalories = calobk + calolunch + calodin;
+        float savedFats = fatbk + fatlunch + fatdin;
+        float savedProteins = proteinbk + proteinlunch + proteindin;
+
+        TextView bkcalo = rootView.findViewById(R.id.calobk);
+        TextView lunchcalo = rootView.findViewById(R.id.calolunch);
+        TextView dincalo = rootView.findViewById(R.id.calodin);
+        TextView bkfat = rootView.findViewById(R.id.fatbk);
+        TextView lunchfat = rootView.findViewById(R.id.fatlunch);
+        TextView dinfat = rootView.findViewById(R.id.fatdin);
+        TextView bkprotein = rootView.findViewById(R.id.proteinbk);
+        TextView lunchprotein = rootView.findViewById(R.id.proteinlunch);
+        TextView dinprotein = rootView.findViewById(R.id.proteindin);
+
         TextView caloHT = rootView.findViewById(R.id.kcal_hien_tai);
         TextView fatHT = rootView.findViewById(R.id.fat_hien_tai);
         TextView proteinHT = rootView.findViewById(R.id.protein_hien_tai);
@@ -171,6 +191,16 @@ public class MainScreen extends Fragment{
                 caloHT.setText(String.valueOf(savedCalories));
                 fatHT.setText(String.valueOf(Math.round(savedFats * 10.0) / 10.0));
                 proteinHT.setText(String.valueOf(Math.round(savedProteins * 10.0) / 10.0));
+                bkcalo.setText(String.valueOf(calobk));
+                lunchcalo.setText(String.valueOf(calolunch));
+                dincalo.setText(String.valueOf(calodin));
+                bkfat.setText(String.valueOf(Math.round(fatbk * 10.0) / 10.0) + "g");
+                lunchfat.setText(String.valueOf(Math.round(fatlunch * 10.0) / 10.0) + "g");
+                dinfat.setText(String.valueOf(Math.round(fatdin * 10.0) / 10.0) + "g");
+                bkprotein.setText(String.valueOf(Math.round(proteinbk * 10.0) / 10.0) + "g");
+                lunchprotein.setText(String.valueOf(Math.round(proteinlunch * 10.0) / 10.0) + "g");
+                dinprotein.setText(String.valueOf(Math.round(proteindin * 10.0) / 10.0) + "g");
+
             } catch (NumberFormatException e) {
                 e.printStackTrace();
             }
@@ -203,7 +233,15 @@ public class MainScreen extends Fragment{
             int wn = Integer.parseInt(sharedPreferences.getString("Weight", "0"))*30;
             keepGoal.setText("Bạn có thể thêm hoạt động ở phía dưới");
             waterTextView.setText("Bạn cần uống " + wn + "ml mỗi ngày");
-
+            bkcalo.setText("0");
+            lunchcalo.setText("0");
+            dincalo.setText("0");
+            bkfat.setText("0g");
+            lunchfat.setText("0g");
+            dinfat.setText("0g");
+            bkprotein.setText("0g");
+            lunchprotein.setText("0g");
+            dinprotein.setText("0g");
         });
 
         if(age == 0){
@@ -245,7 +283,6 @@ public class MainScreen extends Fragment{
         TextView menuItem2 = sideMenuView.findViewById(R.id.menu_2);
         TextView menuItem3 = sideMenuView.findViewById(R.id.menu_3);
         TextView menuItem4 = sideMenuView.findViewById(R.id.menu_4);
-        TextView menuItem5 = sideMenuView.findViewById(R.id.menu_5);
         TextView menuItem6 = sideMenuView.findViewById(R.id.menu_6);
         TextView menuItem7 = sideMenuView.findViewById(R.id.menu_7);
         TextView menuItem8 = sideMenuView.findViewById(R.id.menu_8);
@@ -256,8 +293,6 @@ public class MainScreen extends Fragment{
         menuItem1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Handle click on menu item 1
-                // Navigate to layout 1
                 navigateToLayout1();
                 popupWindow.dismiss();
             }
@@ -273,13 +308,13 @@ public class MainScreen extends Fragment{
         });
 
         //thuc an
-        /*menuItem3.setOnClickListener(new View.OnClickListener() {
+        menuItem3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 navigateToLayout3();
                 popupWindow.dismiss();
             }
-        });*/
+        });
 
         //loai thuc pham
         menuItem4.setOnClickListener(new View.OnClickListener() {
@@ -290,14 +325,6 @@ public class MainScreen extends Fragment{
             }
         });
 
-        //so nhat ky
-        menuItem5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                navigateToLayout5();
-                popupWindow.dismiss();
-            }
-        });
 
         //bua an
         menuItem6.setOnClickListener(new View.OnClickListener() {
@@ -349,15 +376,15 @@ public class MainScreen extends Fragment{
         transaction.addToBackStack(null);
         transaction.commit();
     }
-    private void navigateToLayout4() {
+    private void navigateToLayout3() {
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        transaction.replace(R.id.ln_main, new LoaiThucPham());
+        transaction.replace(R.id.ln_main, new ThucAnFragment());
         transaction.addToBackStack(null);
         transaction.commit();
     }
-    private void navigateToLayout5() {
+    private void navigateToLayout4() {
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        transaction.replace(R.id.ln_main, new NhatKy());
+        transaction.replace(R.id.ln_main, new LoaiThucPham());
         transaction.addToBackStack(null);
         transaction.commit();
     }
