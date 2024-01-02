@@ -112,6 +112,11 @@ public class MainScreen extends Fragment{
         int weight = Integer.parseInt(userWeight);
         String gender = sharedPreferences.getString("Gender", "Nam");
         kcal.setText(String.valueOf(userKcal));
+
+        TextView goal = rootView.findViewById(R.id.goal);
+        String userGoal = sharedPreferences.getString("SelectedGoal", "");
+        goal.setText(userGoal);
+
         double fatCal = 0.0;
         double proteinCal =0.0;
         if(gender.equals("Nam")) {
@@ -133,9 +138,22 @@ public class MainScreen extends Fragment{
                 proteinCal = Math.round(weight*0.85);
             }
         }
-        String fatst = fatCal +"g";
+        double proteinCalculate = 0;
+        double fatCalculate = 0;
+        if(userGoal.equals("Giảm cân")) {
+            proteinCalculate = proteinCal;
+            fatCalculate = fatCal-10;
+        } else if (userGoal.equals("Cân bằng")) {
+            proteinCalculate = proteinCal+10;
+            fatCalculate = fatCal;
+        } else {
+            proteinCalculate = proteinCal+20;
+            fatCalculate = fatCal+10;
+        }
+
+        String fatst = fatCalculate +"g";
         fat.setText(fatst);
-        String proteinst = proteinCal +"g";
+        String proteinst = proteinCalculate +"g";
         protein.setText(proteinst);
 
         TextView caloAct = rootView.findViewById(R.id.calo_act);
@@ -154,9 +172,6 @@ public class MainScreen extends Fragment{
             waterNeed = Integer.parseInt(sharedPreferences.getString("Weight", "0"))*30 + sharedPreferences.getInt("CaloWaste",0 )*2;
         }
 
-        TextView goal = rootView.findViewById(R.id.goal);
-        String userGoal = sharedPreferences.getString("SelectedGoal", "");
-        goal.setText(userGoal);
 
         waterTextView.setText("Bạn cần uống " + waterNeed + "ml mỗi ngày");
 
